@@ -66,7 +66,7 @@
 
   /* ============ BASE ============ */
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; max-width: 100%; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
@@ -473,7 +473,7 @@
   .contact-card.em .cc-cta { color: var(--accent-deep); }
 
   /* sticky always-on contact bar */
-  .contact-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--hero-2); border-top: 1px solid var(--hero-line); box-shadow: 0 -6px 24px -8px rgba(6,15,34,0.5); }
+  .contact-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--hero-2); border-top: 1px solid var(--hero-line); box-shadow: 0 -6px 24px -8px rgba(6,15,34,0.5); transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; will-change: transform; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .cb-inner { max-width: var(--maxw); margin: 0 auto; padding: 11px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .cb-text { color: var(--hero-ink); font-weight: 600; font-size: 15px; }
   .cb-text b { color: #4fd18a; font-weight: 700; }
@@ -504,6 +504,43 @@
     .tabs { width: 100%; }
     .foot-inner { flex-direction: column; }
     .ctrl-row { grid-template-columns: 1fr; }
+
+    /* bigger, easier-to-tap UI on phones (no zooming needed) */
+    .tab { font-size: 15px; padding: 11px 15px; flex: 1; justify-content: center; }
+    .panel { padding: 16px; }
+    .band-head p { font-size: 16px; }
+    .band-head h2 { font-size: 30px; }
+    /* pipeline: wide columns so you clearly swipe one at a time, big cards */
+    .kanban { grid-auto-flow: column; grid-auto-columns: 80%; gap: 12px; scroll-snap-type: x mandatory; }
+    .kb-col { scroll-snap-align: start; min-height: 200px; }
+    .kb-col h6 { font-size: 12px; }
+    .deal { padding: 13px; }
+    .deal .d-top { font-size: 15px; }
+    .deal .d-sub { font-size: 13px; }
+    .deal .d-val { font-size: 14px; }
+    .kanban-hint { font-size: 14px; }
+    /* stats */
+    .stat { padding: 15px; }
+    .stat .s-val { font-size: 25px; }
+    .stat .s-lbl { font-size: 11px; }
+    /* matching */
+    .ms-res { padding: 14px; }
+    .ms-res .r-t { font-size: 15px; }
+    .ms-res .r-m { font-size: 12.5px; }
+    .ms-res .r-s { font-size: 22px; }
+    .ms-client h5 { font-size: 17px; }
+    /* calendar: taller cells, readable */
+    .cal { gap: 4px; }
+    .cal .day { min-height: 54px; padding: 5px; }
+    .cal .day .dn { font-size: 12px; }
+    .cal-ev { font-size: 14px; }
+    /* features + contact cards */
+    .feat { padding: 22px; }
+    .feat h3 { font-size: 18px; }
+    .feat > p { font-size: 15px; }
+    .contact-card { padding: 24px; }
+    .contact-card h3 { font-size: 19px; }
+    .contact-card p { font-size: 15px; }
   }
 </style>
 
