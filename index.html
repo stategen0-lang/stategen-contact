@@ -1,0 +1,1325 @@
+<title>StateGen — Contact</title>
+<meta name="description" content="StateGen is the CRM built for real estate agencies. Client-property matching, a visual deal pipeline, and automated WhatsApp reminders in one place.">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --ground: #faf9f5;
+    --surface: #ffffff;
+    --surface-2: #f3f1ea;
+    --ink: #0e1f3d;
+    --ink-soft: #3a4a63;
+    --ink-mute: #6c7890;
+    --line: #e6e2d7;
+    --line-soft: #efece3;
+    --accent: #5e8fd6;
+    --accent-deep: #3f6fbc;
+    --accent-soft: rgba(94, 143, 214, 0.12);
+    --good: #2f9e6b;
+    --good-soft: rgba(47, 158, 107, 0.12);
+    --hot: #d9663f;
+    --hot-soft: rgba(217, 102, 63, 0.12);
+    --gold: #c79a4b;
+
+    --hero-1: #12274d;
+    --hero-2: #0a1830;
+    --hero-3: #060f22;
+    --hero-ink: #f4f7fc;
+    --hero-soft: #aebbd4;
+    --hero-mute: #7d8bab;
+    --hero-line: rgba(140, 165, 210, 0.16);
+    --hero-card: rgba(255, 255, 255, 0.04);
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+    --shadow-sm: 0 1px 2px rgba(14, 31, 61, 0.06), 0 2px 8px rgba(14, 31, 61, 0.05);
+    --shadow-md: 0 12px 32px -12px rgba(14, 31, 61, 0.22), 0 4px 12px rgba(14, 31, 61, 0.06);
+    --shadow-lg: 0 40px 80px -32px rgba(6, 15, 34, 0.55);
+    --radius: 14px;
+    --maxw: 1160px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0a1526; --surface: #0f1e38; --surface-2: #13233f;
+      --ink: #eef2f8; --ink-soft: #bcc7da; --ink-mute: #7f8daa;
+      --line: #1e2f4d; --line-soft: #182742;
+      --accent: #74a0e2; --accent-deep: #5e8fd6; --accent-soft: rgba(94,143,214,0.16);
+      --good: #45b783; --good-soft: rgba(69,183,131,0.14);
+      --hot: #e6825a; --hot-soft: rgba(230,130,90,0.14);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 14px 34px -14px rgba(0,0,0,0.6);
+      --shadow-lg: 0 40px 80px -32px rgba(0,0,0,0.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0a1526; --surface: #0f1e38; --surface-2: #13233f;
+    --ink: #eef2f8; --ink-soft: #bcc7da; --ink-mute: #7f8daa;
+    --line: #1e2f4d; --line-soft: #182742;
+    --accent: #74a0e2; --accent-deep: #5e8fd6; --accent-soft: rgba(94,143,214,0.16);
+    --good: #45b783; --good-soft: rgba(69,183,131,0.14);
+    --hot: #e6825a; --hot-soft: rgba(230,130,90,0.14);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 14px 34px -14px rgba(0,0,0,0.6);
+    --shadow-lg: 0 40px 80px -32px rgba(0,0,0,0.7);
+  }
+
+  /* ============ BASE ============ */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+  body {
+    margin: 0; font-family: var(--font-sans); background: var(--ground); color: var(--ink-soft);
+    line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { color: var(--ink); line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; margin: 0; }
+  section { position: relative; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* ============ NAV ============ */
+  .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--ground) 82%, transparent); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; font-size: 18px; }
+  .brand svg { display: block; }
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  .nav-links a.navlink { font-size: 14.5px; font-weight: 500; color: var(--ink-soft); transition: color 0.2s; }
+  .nav-links a.navlink:hover { color: var(--accent-deep); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-sans); font-weight: 600; font-size: 14.5px; padding: 10px 18px; border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: transform 0.15s, box-shadow 0.2s, background 0.2s, border-color 0.2s; white-space: nowrap; }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--accent-deep); color: #fff; box-shadow: 0 6px 18px -6px rgba(63,111,188,0.6); }
+  .btn-primary:hover { background: #35619e; }
+  .btn-ghost { border-color: var(--line); color: var(--ink); background: var(--surface); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
+  .btn-lg { padding: 14px 26px; font-size: 16px; border-radius: 12px; }
+  .theme-toggle { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); cursor: pointer; display: grid; place-items: center; transition: color 0.2s, border-color 0.2s; }
+  .theme-toggle:hover { color: var(--accent-deep); border-color: var(--accent); }
+
+  /* ============ HERO ============ */
+  .hero { background: radial-gradient(1200px 620px at 78% -8%, rgba(94,143,214,0.22), transparent 60%), radial-gradient(900px 500px at 8% 12%, rgba(94,143,214,0.10), transparent 55%), linear-gradient(168deg, var(--hero-1), var(--hero-2) 52%, var(--hero-3)); color: var(--hero-ink); position: relative; overflow: hidden; border-bottom: 1px solid var(--hero-line); }
+  .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--hero-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-line) 1px, transparent 1px); background-size: 58px 58px; -webkit-mask-image: radial-gradient(circle at 50% 20%, #000 0%, transparent 72%); mask-image: radial-gradient(circle at 50% 20%, #000 0%, transparent 72%); opacity: 0.5; pointer-events: none; }
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr 1fr; gap: 54px; align-items: center; padding: 78px 0 92px; }
+  .hero h1 { color: var(--hero-ink); font-size: clamp(38px, 5.4vw, 62px); letter-spacing: -0.03em; font-weight: 700; }
+  .hero h1 .hl { color: #9ec0f2; }
+  .hero-sub { color: var(--hero-soft); font-size: clamp(16px, 1.4vw, 19px); max-width: 34ch; margin-top: 22px; }
+  .hero-pill { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 24px; padding: 7px 14px 7px 10px; border-radius: 100px; background: var(--hero-card); border: 1px solid var(--hero-line); font-size: 13px; color: var(--hero-soft); font-weight: 500; }
+  .hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #4fd18a; box-shadow: 0 0 0 4px rgba(79,209,138,0.18); }
+  .hero-cta { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .btn-on-dark { background: #fff; color: var(--hero-2); box-shadow: 0 12px 30px -10px rgba(0,0,0,0.5); }
+  .btn-on-dark:hover { background: #eaf1fc; }
+  .btn-outline-dark { border-color: var(--hero-line); color: var(--hero-ink); background: rgba(255,255,255,0.03); }
+  .btn-outline-dark:hover { border-color: rgba(158,192,242,0.6); background: rgba(255,255,255,0.07); }
+  .hero-note { margin-top: 20px; font-size: 13px; color: var(--hero-mute); display: flex; align-items: center; gap: 8px; }
+
+  /* ---- matching demo ---- */
+  .demo { background: rgba(9,19,40,0.62); border: 1px solid var(--hero-line); border-radius: 18px; box-shadow: var(--shadow-lg); overflow: hidden; backdrop-filter: blur(4px); }
+  .demo-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--hero-line); background: rgba(255,255,255,0.02); }
+  .demo-bar .tl { display: flex; gap: 6px; }
+  .demo-bar .tl i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.16); display: block; }
+  .demo-bar .tag { margin-left: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hero-mute); }
+  .demo-body { padding: 18px; }
+  .demo-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--hero-mute); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+  .demo-label .lbl-hint { text-transform: none; letter-spacing: 0; color: var(--hero-soft); font-family: var(--font-sans); font-size: 11px; }
+
+  .client-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .chip { font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 100px; cursor: pointer; background: var(--hero-card); border: 1px solid var(--hero-line); color: var(--hero-soft); transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+  .chip .av { width: 18px; height: 18px; border-radius: 50%; font-size: 9px; font-weight: 700; color: #fff; display: grid; place-items: center; }
+  .chip:hover { border-color: rgba(158,192,242,0.5); color: var(--hero-ink); }
+  .chip.active { background: rgba(94,143,214,0.16); border-color: #5e8fd6; color: var(--hero-ink); }
+
+  /* editable prefs */
+  .prefs-edit { background: rgba(255,255,255,0.03); border: 1px solid var(--hero-line); border-radius: 12px; padding: 13px 14px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .ctrl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ctrl { display: flex; flex-direction: column; gap: 5px; }
+  .ctrl label { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hero-mute); }
+  .ctrl select { appearance: none; -webkit-appearance: none; background: #13294d url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23aebbd4' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 10px center; border: 1px solid var(--hero-line); color: var(--hero-ink); font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; padding: 8px 30px 8px 11px; border-radius: 9px; cursor: pointer; }
+  .ctrl select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .ctrl select option { background: #0f1e38; color: #f4f7fc; }
+  .mini-select option { background: var(--surface); color: var(--ink); }
+  .budget-row { display: flex; flex-direction: column; gap: 7px; }
+  .budget-row .b-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .budget-row .b-val { font-family: var(--font-mono); font-weight: 700; font-size: 15px; color: #9ec0f2; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 100px; background: rgba(255,255,255,0.14); outline: none; cursor: pointer; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); box-shadow: 0 2px 6px rgba(0,0,0,0.4); cursor: pointer; }
+  input[type="range"]::-moz-range-thumb { width: 15px; height: 15px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); cursor: pointer; }
+  input[type="range"]:focus-visible::-webkit-slider-thumb { outline: 2px solid #9ec0f2; outline-offset: 2px; }
+  .beds-row { display: flex; align-items: center; justify-content: space-between; }
+  .beds-row .b-lab { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hero-mute); }
+  .stepper { display: inline-flex; align-items: center; gap: 2px; background: rgba(255,255,255,0.06); border: 1px solid var(--hero-line); border-radius: 9px; padding: 3px; }
+  .stepper button { width: 26px; height: 26px; border-radius: 7px; border: none; background: transparent; color: var(--hero-ink); font-size: 17px; font-weight: 600; cursor: pointer; display: grid; place-items: center; transition: background 0.15s; line-height: 1; }
+  .stepper button:hover { background: rgba(255,255,255,0.1); }
+  .stepper .val { min-width: 30px; text-align: center; font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--hero-ink); }
+
+  .match-list { display: flex; flex-direction: column; gap: 10px; }
+  .match { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.028); border: 1px solid var(--hero-line); transition: border-color 0.4s, background 0.4s; }
+  .match.top { border-color: rgba(79,209,138,0.45); background: rgba(79,209,138,0.07); }
+  .match .m-title { font-size: 14px; font-weight: 600; color: var(--hero-ink); }
+  .match .m-meta { font-size: 12px; color: var(--hero-mute); font-family: var(--font-mono); }
+  .match .m-score { font-family: var(--font-mono); font-weight: 700; font-size: 17px; color: var(--hero-soft); grid-row: span 2; align-self: center; }
+  .match.top .m-score { color: #63d79a; }
+  .m-bar { grid-column: 1 / -1; height: 5px; border-radius: 100px; background: rgba(255,255,255,0.08); overflow: hidden; margin-top: 4px; }
+  .m-bar > i { display: block; height: 100%; width: 0; border-radius: 100px; background: linear-gradient(90deg, #5e8fd6, #63d79a); transition: width 0.8s cubic-bezier(0.22,1,0.36,1); }
+
+  /* trust strip */
+  .trust { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .trust-inner { display: flex; align-items: center; gap: 30px; padding: 22px 0; flex-wrap: wrap; justify-content: center; }
+  .trust span { font-size: 13px; color: var(--ink-mute); font-family: var(--font-mono); letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 9px; }
+  .trust span svg { color: var(--accent); }
+
+  /* ============ SECTIONS ============ */
+  .band { padding: 92px 0; }
+  .band-head { max-width: 640px; margin-bottom: 50px; }
+  .band-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .band-head h2 { font-size: clamp(28px, 3.6vw, 42px); margin-top: 14px; }
+  .band-head p { margin-top: 18px; font-size: 17.5px; color: var(--ink-soft); }
+
+  /* problem */
+  .problem { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .pain-list { display: flex; flex-direction: column; gap: 4px; }
+  .pain { display: flex; gap: 15px; align-items: flex-start; padding: 16px; border-radius: 12px; transition: background 0.2s; }
+  .pain:hover { background: var(--surface-2); }
+  .pain .x { flex: 0 0 34px; height: 34px; border-radius: 9px; background: var(--hot-soft); color: var(--hot); display: grid; place-items: center; margin-top: 2px; }
+  .pain h4 { font-size: 16px; margin-bottom: 3px; }
+  .pain p { font-size: 14.5px; color: var(--ink-mute); }
+  .arrow-note { margin-top: 30px; padding: 18px 20px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 10px 10px 0; }
+  .arrow-note p { color: var(--ink); font-weight: 500; font-size: 16px; }
+  .arrow-note p b { color: var(--accent-deep); }
+
+  /* segmented toggle */
+  .seg { display: inline-flex; gap: 3px; padding: 4px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); margin-bottom: 14px; }
+  .seg button { font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; color: var(--ink-mute); padding: 6px 13px; border-radius: 7px; border: none; background: transparent; cursor: pointer; transition: all 0.2s; }
+  .seg button.active { color: #fff; background: var(--accent-deep); }
+  .seg button.active.good { background: var(--good); }
+
+  .chat-mock { background: var(--surface-2); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px 22px; box-shadow: var(--shadow-md); }
+  .ch-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .ch-head .ch-t { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); display: flex; align-items: center; gap: 8px; }
+  .replay { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--accent-deep); background: var(--accent-soft); border: none; padding: 5px 11px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+  .replay:hover { background: color-mix(in srgb, var(--accent-soft) 60%, var(--accent)); }
+  .chat-stream { min-height: 258px; }
+  .bubble { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 13.5px; margin-bottom: 9px; line-height: 1.45; opacity: 0; transform: translateY(8px); animation: pop 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+  @keyframes pop { to { opacity: 1; transform: none; } }
+  .bubble.them { background: var(--surface); border: 1px solid var(--line); color: var(--ink-soft); border-bottom-left-radius: 4px; }
+  .bubble.me { background: #d9f2df; color: #0f3d24; margin-left: auto; border-bottom-right-radius: 4px; }
+  :root[data-theme="dark"] .bubble.me { background: #1c4a33; color: #b9ecc9; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bubble.me { background: #1c4a33; color: #b9ecc9; } }
+  .bubble small { display: block; font-size: 10.5px; opacity: 0.6; margin-top: 3px; }
+  .chat-verdict { text-align: center; margin-top: 8px; font-size: 12.5px; font-weight: 700; font-family: var(--font-mono); opacity: 0; animation: pop 0.35s ease forwards; }
+  .chat-verdict.lost { color: var(--hot); }
+  .chat-verdict.won { color: var(--good); }
+  /* stategen happy path */
+  .sg-step { display: flex; gap: 12px; align-items: flex-start; padding: 11px 13px; border-radius: 11px; background: var(--surface); border: 1px solid var(--line); margin-bottom: 9px; opacity: 0; transform: translateY(8px); animation: pop 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .sg-step .sg-ic { flex: none; width: 30px; height: 30px; border-radius: 8px; background: var(--good-soft); color: var(--good); display: grid; place-items: center; }
+  .sg-step b { color: var(--ink); font-size: 13.5px; display: block; }
+  .sg-step span { font-size: 12px; color: var(--ink-mute); }
+  .sg-step .sg-badge { margin-left: auto; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--good); align-self: center; }
+  /* whatsapp-style date divider */
+  .chat-daydiv { text-align: center; margin: 8px 0 12px; opacity: 0; animation: pop 0.35s ease forwards; }
+  .chat-daydiv span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-mute); background: var(--ground); border: 1px solid var(--line-soft); padding: 4px 13px; border-radius: 100px; }
+  /* shared property/client cards inside a bubble */
+  .bubble.has-card { padding: 6px; max-width: 90%; }
+  .bubble .b-cap { display: block; padding: 5px 8px 8px; font-size: 13.5px; line-height: 1.45; }
+  .bubble.has-card small { padding: 4px 8px 2px; }
+  .share-card { border-radius: 11px; overflow: hidden; border: 1px solid var(--line); background: var(--ground); }
+  .sc-head { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-mute); padding: 7px 10px; border-bottom: 1px solid var(--line-soft); background: var(--surface); }
+  .sc-head svg { flex: none; }
+  .sc-body { display: flex; gap: 11px; padding: 11px; align-items: center; }
+  .sc-thumb { width: 44px; height: 44px; border-radius: 9px; flex: none; display: grid; place-items: center; }
+  .sc-thumb.prop { background: var(--accent-soft); color: var(--accent-deep); }
+  .sc-thumb.client { color: #fff; font-weight: 700; font-size: 17px; }
+  .sc-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .sc-info b { color: var(--ink); font-size: 13.5px; font-weight: 600; }
+  .sc-info span { color: var(--ink-mute); font-size: 11.5px; }
+  .sc-price { color: var(--good) !important; font-family: var(--font-mono); font-weight: 700; font-size: 12.5px; }
+  .sc-tag { color: var(--hot) !important; font-weight: 700; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  /* ============ SHOWCASE ============ */
+  .showcase { background: var(--ground); }
+  .tabs { display: inline-flex; gap: 4px; padding: 5px; border-radius: 13px; background: var(--surface-2); border: 1px solid var(--line); margin-bottom: 26px; flex-wrap: wrap; }
+  .tab { font-family: var(--font-sans); font-size: 14px; font-weight: 600; color: var(--ink-mute); padding: 9px 16px; border-radius: 9px; cursor: pointer; border: none; background: transparent; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .tab:hover { color: var(--ink); }
+  .tab.active { background: var(--surface); color: var(--accent-deep); box-shadow: var(--shadow-sm); }
+  .tab svg { width: 15px; height: 15px; }
+  .screen { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); box-shadow: var(--shadow-md); position: relative; }
+  .screen-chrome { display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+  .screen-chrome .dots { display: flex; gap: 6px; }
+  .screen-chrome .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: block; }
+  .screen-chrome .url { margin-left: 10px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-mute); background: var(--ground); padding: 4px 12px; border-radius: 7px; border: 1px solid var(--line-soft); }
+  .panel { display: none; padding: 22px; }
+  .panel.active { display: block; animation: fade 0.4s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .panel-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .panel-tools .pt-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .mini-select { appearance: none; -webkit-appearance: none; background: var(--ground) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236c7890' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 10px center; border: 1px solid var(--line); color: var(--ink); font-family: var(--font-sans); font-size: 13px; font-weight: 600; padding: 7px 30px 7px 12px; border-radius: 9px; cursor: pointer; }
+  .mini-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+  .stat { padding: 16px; border-radius: 12px; background: var(--ground); border: 1px solid var(--line-soft); transition: border-color 0.2s, transform 0.2s; }
+  .stat:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .stat .s-lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); }
+  .stat .s-val { font-size: 27px; font-weight: 700; color: var(--ink); margin-top: 6px; letter-spacing: -0.02em; }
+  .stat .s-val small { font-size: 14px; color: var(--ink-mute); font-weight: 600; }
+  .stat .s-trend { font-size: 12px; color: var(--good); font-weight: 600; margin-top: 4px; }
+  .dash-lower { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+  .mini-card { border: 1px solid var(--line-soft); border-radius: 12px; padding: 16px; background: var(--ground); position: relative; }
+  .mini-card h5 { font-size: 13px; color: var(--ink); margin: 0 0 12px; display: flex; align-items: center; justify-content: space-between; }
+  .mini-card h5 span { font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute); font-weight: 500; }
+  .row-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: 13px; }
+  .row-item:first-of-type { border-top: none; }
+  .row-item .ri-ic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex: none; font-size: 12px; }
+  .row-item .ri-main { flex: 1; min-width: 0; }
+  .row-item .ri-main b { color: var(--ink); font-weight: 600; display: block; }
+  .row-item .ri-main span { color: var(--ink-mute); font-size: 12px; }
+  .row-item .ri-val { font-family: var(--font-mono); font-weight: 600; color: var(--ink-soft); font-size: 12.5px; }
+  .bar-mini { height: 90px; display: flex; align-items: flex-end; gap: 7px; padding-top: 8px; }
+  .bar-mini .bcol { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; cursor: pointer; }
+  .bar-mini .bcol i { width: 100%; background: linear-gradient(180deg, var(--accent), var(--accent-deep)); border-radius: 5px 5px 0 0; display: block; opacity: 0.82; transition: height 0.6s cubic-bezier(0.22,1,0.36,1), opacity 0.2s; }
+  .bar-mini .bcol:hover i { opacity: 1; }
+  .bar-mini .bcol .bx { text-align: center; font-family: var(--font-mono); font-size: 9px; color: var(--ink-mute); margin-top: 4px; }
+  .chart-tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--surface); font-family: var(--font-mono); font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 7px; opacity: 0; transform: translate(-50%, -6px); transition: opacity 0.15s; white-space: nowrap; z-index: 5; }
+  :root[data-theme="dark"] .chart-tip { background: #eef2f8; color: #0a1526; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chart-tip { background: #eef2f8; color: #0a1526; } }
+
+  /* pipeline */
+  .kanban { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 1fr); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+  .kb-col { background: var(--ground); border: 1px solid var(--line-soft); border-radius: 12px; padding: 11px; min-height: 220px; transition: outline 0.15s; }
+  .kb-col h6 { margin: 0 0 11px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); display: flex; align-items: center; justify-content: space-between; }
+  .kb-col h6 .cnt { background: var(--surface-2); color: var(--ink-soft); border-radius: 100px; padding: 1px 8px; font-size: 10px; }
+  .kb-col .stage-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .deal { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 11px; margin-bottom: 9px; box-shadow: var(--shadow-sm); cursor: grab; transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s; user-select: none; }
+  .deal:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+  .deal.dragging { opacity: 0.4; }
+  .deal .d-top { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .deal .d-sub { font-size: 11.5px; color: var(--ink-mute); margin-top: 2px; }
+  .deal .d-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 9px; }
+  .deal .d-val { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--good); }
+  .deal .d-av { width: 20px; height: 20px; border-radius: 50%; font-size: 9px; color: #fff; display: grid; place-items: center; font-weight: 700; }
+  .kb-col.drop-hint { outline: 2px dashed var(--accent); outline-offset: -2px; }
+  .kanban-hint { margin-top: 14px; font-size: 13px; color: var(--ink-mute); text-align: center; }
+  .kanban-hint b { color: var(--accent-deep); }
+
+  /* matching screen */
+  .match-screen { display: grid; grid-template-columns: 270px 1fr; gap: 18px; }
+  .ms-client { border: 1px solid var(--line-soft); border-radius: 12px; padding: 16px; background: var(--ground); align-self: start; }
+  .ms-client .ms-av { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 17px; margin-bottom: 12px; transition: background 0.3s; }
+  .ms-client h5 { font-size: 16px; color: var(--ink); margin: 0; }
+  .ms-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 6px; margin-top: 8px; font-family: var(--font-mono); letter-spacing: 0.04em; background: var(--accent-soft); color: var(--accent-deep); }
+  .ms-pref-row { display: flex; justify-content: space-between; padding: 9px 0; border-top: 1px solid var(--line-soft); font-size: 13px; }
+  .ms-pref-row:first-of-type { border-top: none; margin-top: 12px; }
+  .ms-pref-row span { color: var(--ink-mute); }
+  .ms-pref-row b { color: var(--ink); font-weight: 600; }
+  .ms-results { display: flex; flex-direction: column; gap: 10px; }
+  .ms-res { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 14px; padding: 13px 15px; border: 1px solid var(--line-soft); border-radius: 12px; background: var(--ground); }
+  .ms-res.hi { border-color: var(--good); background: var(--good-soft); }
+  .ms-res .r-t { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+  .ms-res .r-m { font-size: 12px; color: var(--ink-mute); font-family: var(--font-mono); }
+  .ms-res .r-s { grid-row: span 2; font-family: var(--font-mono); font-weight: 700; font-size: 20px; color: var(--ink-mute); }
+  .ms-res.hi .r-s { color: var(--good); }
+  .ms-res .r-bar { grid-column: 1 / -1; height: 5px; border-radius: 100px; background: var(--line); overflow: hidden; margin-top: 5px; }
+  .ms-res .r-bar > i { display: block; height: 100%; width: 0; border-radius: 100px; background: linear-gradient(90deg, var(--accent), var(--good)); transition: width 0.7s cubic-bezier(0.22,1,0.36,1); }
+
+  /* calendar */
+  .cal-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .cal-top .cal-month { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .cal-nav { display: inline-flex; gap: 6px; }
+  .cal-nav button { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--ground); color: var(--ink-soft); cursor: pointer; display: grid; place-items: center; transition: all 0.2s; }
+  .cal-nav button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-deep); }
+  .cal-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal .cal-dow { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); text-align: center; padding-bottom: 4px; }
+  .cal .day { min-height: 62px; border: 1px solid var(--line-soft); border-radius: 9px; padding: 6px; background: var(--ground); font-size: 11px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .cal .day.empty { background: transparent; border-color: transparent; cursor: default; }
+  .cal .day:not(.empty):hover { border-color: var(--accent); }
+  .cal .day.today { border-color: var(--accent); background: var(--accent-soft); }
+  .cal .day.selected { border-color: var(--accent-deep); box-shadow: 0 0 0 2px var(--accent-soft); }
+  .cal .day .dn { font-family: var(--font-mono); color: var(--ink-mute); font-size: 11px; }
+  .cal .day.today .dn { color: var(--accent-deep); font-weight: 700; }
+  .cal .dots-row { display: flex; gap: 3px; margin-top: 5px; flex-wrap: wrap; }
+  .cal .edot { width: 6px; height: 6px; border-radius: 50%; display: block; }
+  .edot.v { background: var(--accent); } .edot.m { background: var(--good); } .edot.f { background: var(--hot); }
+  .cal-detail { margin-top: 16px; border: 1px solid var(--line-soft); border-radius: 12px; padding: 15px 16px; background: var(--ground); }
+  .cal-detail h6 { margin: 0 0 10px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); }
+  .cal-ev { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 13.5px; color: var(--ink-soft); border-top: 1px solid var(--line-soft); }
+  .cal-ev:first-of-type { border-top: none; }
+  .cal-ev .ev-pill { font-family: var(--font-mono); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .ev-pill.v { background: var(--accent-soft); color: var(--accent-deep); } .ev-pill.m { background: var(--good-soft); color: var(--good); } .ev-pill.f { background: var(--hot-soft); color: var(--hot); }
+  .cal-none { font-size: 13px; color: var(--ink-mute); }
+
+  /* ============ FEATURES ============ */
+  .features { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .feat { padding: 26px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ground); transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; cursor: pointer; }
+  .feat:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+  .feat.open { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .feat .f-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .feat .f-ic { width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-deep); display: grid; place-items: center; margin-bottom: 18px; }
+  .feat .f-chev { color: var(--ink-mute); transition: transform 0.3s, color 0.2s; flex: none; margin-top: 4px; }
+  .feat.open .f-chev { transform: rotate(45deg); color: var(--accent-deep); }
+  .feat h3 { font-size: 18.5px; margin-bottom: 9px; }
+  .feat > p { font-size: 14.5px; color: var(--ink-mute); }
+  .feat .f-tag { margin-top: 14px; display: inline-block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--accent-deep); background: var(--accent-soft); padding: 3px 9px; border-radius: 6px; }
+  .feat .f-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.22,1,0.36,1); }
+  .feat.open .f-more { grid-template-rows: 1fr; }
+  .feat .f-more-inner { overflow: hidden; }
+  .feat .f-more p { font-size: 13.5px; color: var(--ink-soft); padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--line-soft); }
+
+  /* ============ HOW ============ */
+  .how { background: var(--ground); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .step { padding: 28px 26px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .step .s-num { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #fff; background: var(--accent-deep); width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; margin-bottom: 18px; }
+  .step h3 { font-size: 19px; margin-bottom: 10px; }
+  .step p { font-size: 14.5px; color: var(--ink-mute); }
+  .step p a { color: var(--accent-deep); font-weight: 600; }
+
+  /* ============ WHO ============ */
+  .who { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .who-tabs { display: flex; justify-content: center; margin-bottom: 30px; }
+  .who-panel { display: none; }
+  .who-panel.active { display: block; animation: fade 0.4s ease; }
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .who-card { padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ground); }
+  .who-card.spotlight { border-color: var(--accent); box-shadow: var(--shadow-md); }
+  .who-card .w-role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep); }
+  .who-card h3 { font-size: 20px; margin: 10px 0 12px; }
+  .who-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .who-card li { font-size: 14px; color: var(--ink-soft); display: flex; gap: 10px; align-items: flex-start; }
+  .who-card li svg { color: var(--good); flex: none; margin-top: 3px; }
+
+  /* ============ PLANS ============ */
+  .plans { background: var(--ground); }
+  .plan-sizer { max-width: 560px; margin: 0 auto 44px; text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px 28px; box-shadow: var(--shadow-sm); }
+  .plan-sizer .ps-q { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 18px; }
+  .plan-sizer .ps-q b { color: var(--accent-deep); font-family: var(--font-mono); font-size: 20px; }
+  .plan-sizer .ps-scale { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute); margin-top: 8px; }
+  .plan-sizer .ps-rec { margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
+  .plan-sizer .ps-rec b { color: var(--accent-deep); }
+  .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .plan { padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); position: relative; display: flex; flex-direction: column; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+  .plan.rec { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+  .plan .p-flag { position: absolute; top: -11px; left: 28px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: #fff; background: var(--accent-deep); padding: 4px 12px; border-radius: 100px; opacity: 0; transform: translateY(4px); transition: opacity 0.3s, transform 0.3s; }
+  .plan.rec .p-flag { opacity: 1; transform: none; }
+  .plan h3 { font-size: 21px; }
+  .plan .p-for { font-size: 14px; color: var(--ink-mute); margin: 8px 0 18px; }
+  .plan .p-price { font-family: var(--font-mono); font-size: 15px; color: var(--ink); font-weight: 600; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--line-soft); }
+  .plan .p-price small { color: var(--ink-mute); font-weight: 400; }
+  .plan ul { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .plan li { font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
+  .plan li svg { color: var(--accent); flex: none; margin-top: 3px; }
+
+  /* ============ CTA ============ */
+  .cta { background: radial-gradient(900px 400px at 50% 0%, rgba(94,143,214,0.22), transparent 60%), linear-gradient(160deg, var(--hero-1), var(--hero-3)); color: var(--hero-ink); text-align: center; position: relative; overflow: hidden; }
+  .cta::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--hero-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-line) 1px, transparent 1px); background-size: 58px 58px; opacity: 0.4; -webkit-mask-image: radial-gradient(circle at 50% 40%, #000, transparent 70%); mask-image: radial-gradient(circle at 50% 40%, #000, transparent 70%); }
+  .cta .wrap { position: relative; z-index: 1; padding: 96px 24px; }
+  .cta h2 { color: var(--hero-ink); font-size: clamp(30px, 4vw, 46px); }
+  .cta p { color: var(--hero-soft); font-size: 18px; max-width: 44ch; margin: 18px auto 0; }
+  .cta .hero-cta { justify-content: center; }
+  .cta .hero-note { justify-content: center; }
+  .cta .hero-note a { color: #9ec0f2; font-weight: 600; }
+
+  /* ============ FOOTER ============ */
+  .foot { background: var(--surface); border-top: 1px solid var(--line); padding: 46px 0 40px; }
+  .foot-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; }
+  .foot .brand { margin-bottom: 12px; }
+  .foot p { font-size: 13.5px; color: var(--ink-mute); max-width: 34ch; }
+  .foot-links { display: flex; gap: 40px; flex-wrap: wrap; }
+  .foot-col h6 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 12px; }
+  .foot-col a { display: block; font-size: 14px; color: var(--ink-soft); padding: 4px 0; transition: color 0.2s; }
+  .foot-col a:hover { color: var(--accent-deep); }
+  .foot-bottom { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ink-mute); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: 0.08s; } .reveal.d2 { transition-delay: 0.16s; } .reveal.d3 { transition-delay: 0.24s; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+  /* custom dot + ring cursor (real-mouse devices only) */
+  @media (hover: hover) and (pointer: fine) {
+    * { cursor: none !important; }
+    .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999; opacity: 0; transform: translate(-50%, -50%); }
+    .cursor-dot { width: 7px; height: 7px; background: #5e8fd6; box-shadow: 0 0 0 1.5px rgba(255,255,255,0.35); transition: opacity 0.25s; }
+    .cursor-ring { width: 32px; height: 32px; border: 1.5px solid rgba(94,143,214,0.7); transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, opacity 0.25s; }
+    .cursor-ring.hover { width: 52px; height: 52px; border-color: #5e8fd6; background: rgba(94,143,214,0.12); }
+    .cursor-ring.down { width: 24px; height: 24px; border-color: #3f6fbc; }
+    body.cursor-on .cursor-dot, body.cursor-on .cursor-ring { opacity: 1; }
+  }
+
+  /* ===== Instagram contact additions ===== */
+  body { padding-bottom: 76px; } /* space for the sticky contact bar */
+  .contact { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 820px; margin: 0 auto; }
+  .contact-card { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 30px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ground); text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .contact-card .cc-ic { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 6px; }
+  .contact-card.wa:hover { border-color: #25d366; }
+  .contact-card.wa .cc-ic { background: rgba(37,211,102,0.14); color: #1da851; }
+  .contact-card.em:hover { border-color: var(--accent); }
+  .contact-card.em .cc-ic { background: var(--accent-soft); color: var(--accent-deep); }
+  .contact-card h3 { font-size: 20px; }
+  .contact-card p { font-size: 14.5px; color: var(--ink-mute); }
+  .contact-card .cc-val { font-family: var(--font-mono); font-size: 14px; color: var(--ink); font-weight: 600; margin-top: 2px; }
+  .contact-card .cc-cta { margin-top: 10px; font-weight: 700; font-size: 14px; }
+  .contact-card.wa .cc-cta { color: #1da851; }
+  .contact-card.em .cc-cta { color: var(--accent-deep); }
+
+  /* sticky always-on contact bar */
+  .contact-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--hero-2); border-top: 1px solid var(--hero-line); box-shadow: 0 -6px 24px -8px rgba(6,15,34,0.5); }
+  .cb-inner { max-width: var(--maxw); margin: 0 auto; padding: 11px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .cb-text { color: var(--hero-ink); font-weight: 600; font-size: 15px; }
+  .cb-text b { color: #4fd18a; font-weight: 700; }
+  .cb-btn { display: inline-flex; align-items: center; gap: 9px; background: #25d366; color: #06351c; font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: 11px; white-space: nowrap; text-decoration: none; box-shadow: 0 6px 18px -6px rgba(37,211,102,0.6); transition: transform 0.15s, box-shadow 0.2s, background 0.2s; }
+  .cb-btn:hover { background: #22c15e; box-shadow: 0 10px 24px -8px rgba(37,211,102,0.7); }
+  .cb-btn:active { transform: translateY(1px); }
+  @media (max-width: 640px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .cb-text { display: none; }
+    .cb-inner { justify-content: center; padding: 10px 16px; }
+    .cb-btn { width: 100%; justify-content: center; font-size: 16px; padding: 14px 22px; }
+    body { padding-bottom: 74px; }
+  }
+
+  /* responsive */
+  @media (max-width: 940px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; padding: 58px 0 70px; }
+    .prob-grid, .dash-lower, .match-screen { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .feat-grid, .steps, .who-grid, .plan-grid { grid-template-columns: 1fr; }
+    .nav-links a.navlink { display: none; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 18px; }
+    .band { padding: 66px 0; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .hero-cta .btn { flex: 1; }
+    .tabs { width: 100%; }
+    .foot-inner { flex-direction: column; }
+    .ctrl-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="StateGen home">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="28" height="28" rx="7" fill="#3f6fbc"/>
+        <path d="M9 21V13l7-4 7 4v8" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M13 21v-4h6v4" stroke="#9ec0f2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      StateGen
+    </a>
+    <div class="nav-links">
+      <a class="navlink" href="#product">Product</a>
+      <a class="navlink" href="#features">Features</a>
+      <a class="navlink" href="#contact">Contact</a>
+      <a class="navlink" href="#plans">Plans</a>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle color theme" title="Toggle theme">
+        <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-pill"><span class="dot"></span> Built for real estate agencies</span>
+        <h1>Stop losing deals in <span class="hl">WhatsApp threads</span> and spreadsheets.</h1>
+        <p class="hero-sub">StateGen is the CRM that runs your whole agency — client-property matching, a live deal pipeline, and automatic WhatsApp follow-ups. One platform. Your entire team.</p>
+        <div class="hero-cta">
+          <a class="btn btn-lg btn-on-dark" href="#product">See it in action →</a>
+          <a class="btn btn-lg btn-outline-dark" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener">Contact us</a>
+        </div>
+        <p class="hero-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Try the matcher → &nbsp;change any preference and watch listings re-rank live
+        </p>
+      </div>
+
+      <!-- LIVE, EDITABLE MATCHING DEMO -->
+      <div class="demo" aria-label="Interactive client-property matching demo">
+        <div class="demo-bar">
+          <span class="tl"><i></i><i></i><i></i></span>
+          <span class="tag">Matching engine · live</span>
+        </div>
+        <div class="demo-body">
+          <div class="demo-label"><span>Client preferences</span><span class="lbl-hint">tap a persona or edit ↓</span></div>
+          <div class="client-chips" id="chips"></div>
+          <div class="prefs-edit">
+            <div class="ctrl-row">
+              <div class="ctrl"><label for="cArea">Area</label>
+                <select id="cArea"></select></div>
+              <div class="ctrl"><label for="cType">Type</label>
+                <select id="cType"></select></div>
+            </div>
+            <div class="budget-row">
+              <div class="b-head"><span class="b-lab" style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--hero-mute);">Budget</span><span class="b-val" id="cBudgetVal">$250k</span></div>
+              <input type="range" id="cBudget" min="60000" max="1000000" step="10000" value="250000" aria-label="Budget">
+            </div>
+            <div class="beds-row">
+              <span class="b-lab">Bedrooms</span>
+              <div class="stepper"><button type="button" id="bedsDown" aria-label="Fewer bedrooms">−</button><span class="val" id="cBeds">2</span><button type="button" id="bedsUp" aria-label="More bedrooms">+</button></div>
+            </div>
+          </div>
+          <div class="match-list" id="matches"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- trust strip -->
+<div class="trust">
+  <div class="wrap trust-inner">
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" stroke-linejoin="round"/></svg> Manager-approved agents only</span>
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2M8 8V6a4 4 0 0 1 8 0v2M12 12v4" stroke-linecap="round" stroke-linejoin="round"/></svg> Every deal in one place</span>
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke-linejoin="round"/></svg> Automatic WhatsApp follow-ups</span>
+    <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg> Live agency analytics</span>
+  </div>
+</div>
+
+<!-- ============ PROBLEM ============ -->
+<section class="band problem">
+  <div class="wrap">
+    <div class="prob-grid">
+      <div class="reveal">
+        <span class="eyebrow">The way it works now</span>
+        <h2 style="font-size:clamp(26px,3.4vw,38px);margin-top:14px;margin-bottom:26px;">Your pipeline lives in six different places.</h2>
+        <div class="pain-list">
+          <div class="pain"><span class="x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><div><h4>Leads buried in chat</h4><p>A serious buyer messages at 9pm, gets scrolled past, and nobody follows up.</p></div></div>
+          <div class="pain"><span class="x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><div><h4>Matching done by memory</h4><p>The right listing for a client exists — but the agent who had it forgot, or already left.</p></div></div>
+          <div class="pain"><span class="x"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span><div><h4>No view of the pipeline</h4><p>The manager can't answer "how many deals are close?" without calling every agent.</p></div></div>
+        </div>
+        <div class="arrow-note"><p>StateGen puts clients, listings, deals and follow-ups in <b>one shared system</b> — so nothing slips and the whole team sees the same picture. <b>Try the toggle →</b></p></div>
+      </div>
+
+      <div class="reveal d2">
+        <div class="chat-mock">
+          <div class="ch-head">
+            <span class="ch-t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke-linejoin="round"/></svg> <span id="chatTitle">Agency group chat</span></span>
+            <button class="replay" id="replayBtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg> Replay</button>
+          </div>
+          <div class="seg" role="tablist" aria-label="Before and after">
+            <button class="active" id="segBefore" role="tab">Group chat</button>
+            <button class="good" id="segAfter" role="tab">With StateGen</button>
+          </div>
+          <div class="chat-stream" id="chatStream"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOWCASE ============ -->
+<section class="band showcase" id="product">
+  <div class="wrap">
+    <div class="band-head center reveal">
+      <span class="eyebrow">The product · click around</span>
+      <h2>One workspace for the whole agency.</h2>
+      <p>Everything your team touches every day — the dashboard, the pipeline, the matching engine, the calendar. It's all live below.</p>
+    </div>
+
+    <div style="display:flex;justify-content:center;" class="reveal d1">
+      <div class="tabs" role="tablist" aria-label="Product views">
+        <button class="tab active" data-tab="dash" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg> Dashboard</button>
+        <button class="tab" data-tab="pipe" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/></svg> Pipeline</button>
+        <button class="tab" data-tab="match" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h6M4 12h6M4 17h6M14 12l3 3 5-6"/></svg> Matching</button>
+        <button class="tab" data-tab="cal" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke-linecap="round"/></svg> Calendar</button>
+      </div>
+    </div>
+
+    <div class="screen reveal d2" style="margin-top:22px;">
+      <div class="screen-chrome"><span class="dots"><i></i><i></i><i></i></span><span class="url" id="screenUrl">stategenapp.vercel.app/dashboard</span></div>
+
+      <!-- DASHBOARD -->
+      <div class="panel active" data-panel="dash">
+        <div class="panel-tools">
+          <span class="pt-title">Agency overview</span>
+          <select class="mini-select" id="yearSelect" aria-label="Filter by year">
+            <option value="2026">2026 · YTD</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+          </select>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="s-lbl">Active listings</div><div class="s-val tnum" data-stat="listings">48</div><div class="s-trend" data-trend="listings">+6 this week</div></div>
+          <div class="stat"><div class="s-lbl">Active clients</div><div class="s-val tnum" data-stat="clients">126</div><div class="s-trend" data-trend="clients">+11 this week</div></div>
+          <div class="stat"><div class="s-lbl">Deals in progress</div><div class="s-val tnum" data-stat="deals">19</div><div class="s-trend" data-trend="deals">4 near close</div></div>
+          <div class="stat"><div class="s-lbl">Commission volume</div><div class="s-val tnum"><span data-stat="volpre">$284</span><small data-stat="volsuf">k</small></div><div class="s-trend" data-trend="vol">2026 total</div></div>
+        </div>
+        <div class="dash-lower">
+          <div class="mini-card">
+            <h5>Recent listings <span>view all</span></h5>
+            <div class="row-item"><span class="ri-ic" style="background:var(--accent-soft);color:var(--accent-deep);">A</span><div class="ri-main"><b>Sioufi Duplex · Achrafieh</b><span>Apartment · 2 bed</span></div><span class="ri-val">$265k</span></div>
+            <div class="row-item"><span class="ri-ic" style="background:var(--good-soft);color:var(--good);">V</span><div class="ri-main"><b>Sea-view Villa · Jounieh</b><span>Villa · 4 bed</span></div><span class="ri-val">$720k</span></div>
+            <div class="row-item"><span class="ri-ic" style="background:var(--hot-soft);color:var(--hot);">C</span><div class="ri-main"><b>Retail Unit · Downtown</b><span>Commercial</span></div><span class="ri-val">$790k</span></div>
+            <div class="row-item"><span class="ri-ic" style="background:var(--accent-soft);color:var(--accent-deep);">L</span><div class="ri-main"><b>Building Plot · Baabda</b><span>Land · 640m²</span></div><span class="ri-val">$310k</span></div>
+          </div>
+          <div class="mini-card">
+            <h5>Commission by month <span id="chartYear">2026</span></h5>
+            <div class="bar-mini" id="barMini"></div>
+            <div class="chart-tip" id="chartTip"></div>
+            <div class="row-item" style="border-top:1px solid var(--line-soft);margin-top:10px;"><div class="ri-main"><b>Best month</b><span id="bestMonth">June</span></div><span class="ri-val" style="color:var(--good)" id="bestVal">$61k</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PIPELINE -->
+      <div class="panel" data-panel="pipe">
+        <div class="panel-tools"><span class="pt-title">Deal pipeline</span></div>
+        <div class="kanban" id="kanban"></div>
+        <p class="kanban-hint">Drag a deal between columns, or click it to advance a stage — <b>the whole team sees the move instantly.</b></p>
+      </div>
+
+      <!-- MATCHING -->
+      <div class="panel" data-panel="match">
+        <div class="panel-tools">
+          <span class="pt-title">Matching engine</span>
+          <select class="mini-select" id="msClientSelect" aria-label="Choose client"></select>
+        </div>
+        <div class="match-screen">
+          <div class="ms-client">
+            <div class="ms-av" id="msAv">R</div>
+            <h5 id="msName">Rania Khoury</h5>
+            <span class="ms-tag" id="msTag">BUYER · PRIORITY</span>
+            <div class="ms-pref-row"><span>Area</span><b id="msArea">Achrafieh</b></div>
+            <div class="ms-pref-row"><span>Type</span><b id="msType">Apartment</b></div>
+            <div class="ms-pref-row"><span>Budget</span><b id="msBudget">$250k</b></div>
+            <div class="ms-pref-row"><span>Bedrooms</span><b id="msBeds">2</b></div>
+          </div>
+          <div class="ms-results" id="msResults"></div>
+        </div>
+      </div>
+
+      <!-- CALENDAR -->
+      <div class="panel" data-panel="cal">
+        <div class="cal-top">
+          <span class="cal-month" id="calMonth">August 2026</span>
+          <div class="cal-nav"><button id="calPrev" aria-label="Previous month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><button id="calNext" aria-label="Next month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        </div>
+        <div class="cal" id="cal"></div>
+        <div class="cal-detail" id="calDetail"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="band features" id="features">
+  <div class="wrap">
+    <div class="band-head center reveal">
+      <span class="eyebrow">What's inside · click a card</span>
+      <h2>Built around how agencies actually close.</h2>
+      <p>Not a generic CRM bent to fit real estate. Every feature is shaped by the way a property team works.</p>
+    </div>
+    <div class="feat-grid" id="featGrid"></div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="band contact" id="contact">
+  <div class="wrap">
+    <div class="band-head center reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Let's set up your agency.</h2>
+      <p>Message us on WhatsApp or send an email — we'll answer your questions and get you activated.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card wa reveal d1" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener">
+        <span class="cc-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.06 8.06 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09h-.01a8.1 8.1 0 0 1-4.12-1.13l-.29-.17-3.06.8.82-2.98-.19-.31a8.07 8.07 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09Zm-2.79 4.35c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span>
+        <h3>WhatsApp us</h3>
+        <p>The fastest way to reach us — tap to open a chat with our team right now.</p>
+        <span class="cc-val">+961 81 056 376</span>
+        <span class="cc-cta">Open WhatsApp chat →</span>
+      </a>
+      <a class="contact-card em reveal d2" href="mailto:stategen0@gmail.com?subject=Interested%20in%20StateGen&amp;body=Hi%20StateGen%2C%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM.">
+        <span class="cc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3>Email us</h3>
+        <p>Prefer email? Send us a note with your agency details and we'll reply shortly.</p>
+        <span class="cc-val">stategen0@gmail.com</span>
+        <span class="cc-cta">Send an email →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section class="band who">
+  <div class="wrap">
+    <div class="band-head center reveal"><span class="eyebrow">Who it's for</span><h2>Any agency — boutique to multi-branch.</h2><p>One tool that gives managers control and gives agents a lighter day. Pick a role:</p></div>
+    <div class="who-tabs reveal d1">
+      <div class="seg" role="tablist" aria-label="Choose a role">
+        <button class="active" data-who="all" role="tab">Everyone</button>
+        <button data-who="managers" role="tab">Managers</button>
+        <button data-who="agents" role="tab">Agents</button>
+      </div>
+    </div>
+    <div class="who-panel active" data-whopanel="all">
+      <div class="who-grid">
+        <div class="who-card"><span class="w-role">For managers &amp; owners</span><h3>See the whole agency</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Every agent's clients, listings and deals in one view</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Approve or reject who joins the team</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Track pipeline, performance and commission volume</li></ul></div>
+        <div class="who-card"><span class="w-role">For agents</span><h3>Close, don't chase</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Best-fit listings surfaced for every client</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp follow-up reminders, sent for you</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Your own book, your own clients — private to you</li></ul></div>
+        <div class="who-card"><span class="w-role">For the whole team</span><h3>One shared source of truth</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Shared calendar for viewings and meetings</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No more re-sending listings across chats</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everyone looking at the same, current data</li></ul></div>
+      </div>
+    </div>
+    <div class="who-panel" data-whopanel="managers">
+      <div class="who-grid">
+        <div class="who-card spotlight"><span class="w-role">For managers &amp; owners</span><h3>Total control of the agency</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Every agent's clients, listings and deals in one view</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Approve or reject who joins the team</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Pending approvals queue, one click to admit</li></ul></div>
+        <div class="who-card"><span class="w-role">Oversight</span><h3>Performance at a glance</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Commission volume, filterable by year</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> See which deals are close and which stall</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full picture without calling a single agent</li></ul></div>
+        <div class="who-card"><span class="w-role">Access</span><h3>You decide who gets in</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Agents join under your agency domain</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Nothing visible until you approve</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Role-based access, no accidental leaks</li></ul></div>
+      </div>
+    </div>
+    <div class="who-panel" data-whopanel="agents">
+      <div class="who-grid">
+        <div class="who-card spotlight"><span class="w-role">For agents</span><h3>Close, don't chase</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Best-fit listings ranked for every client</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp follow-up reminders, sent for you</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Your own book — private to you</li></ul></div>
+        <div class="who-card"><span class="w-role">Daily flow</span><h3>Less admin, more viewings</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Log activity in seconds, not spreadsheets</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Drag your deals through the pipeline</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Shared calendar for every viewing</li></ul></div>
+        <div class="who-card"><span class="w-role">Never miss</span><h3>Every lead stays warm</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Daily reminders for pending follow-ups</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Listing alerts when new stock fits a client</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Colour-coded clients: priority, active, cold</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANS ============ -->
+<section class="band plans" id="plans">
+  <div class="wrap">
+    <div class="band-head center reveal"><span class="eyebrow">Plans</span><h2>Priced for the size of your agency.</h2><p>Slide to your team size — we'll point you to the right tier. Pricing is set with you directly.</p></div>
+    <div class="plan-sizer reveal d1">
+      <div class="ps-q">My agency has <b id="agentCount">8</b> agents</div>
+      <input type="range" id="sizeSlider" min="1" max="60" value="8" aria-label="Number of agents">
+      <div class="ps-scale"><span>1</span><span>15</span><span>30</span><span>45</span><span>60+</span></div>
+      <div class="ps-rec">Recommended: <b id="recPlan">Business</b></div>
+    </div>
+    <div class="plan-grid">
+      <div class="plan" data-plan="Team"><h3>Team</h3><p class="p-for">Small &amp; boutique agencies</p><div class="p-price">Custom <small>/ talk to us</small></div><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full CRM &amp; matching engine</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Pipeline, calendar &amp; alerts</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp reminders</li></ul><a class="btn btn-ghost" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register</a></div>
+      <div class="plan" data-plan="Business"><span class="p-flag">Recommended</span><h3>Business</h3><p class="p-for">Most agencies start here</p><div class="p-price">Custom <small>/ talk to us</small></div><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Team</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> More agents &amp; listings</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full analytics &amp; role controls</li></ul><a class="btn btn-primary" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register your agency</a></div>
+      <div class="plan" data-plan="Unlimited"><h3>Unlimited</h3><p class="p-for">Large &amp; multi-branch firms</p><div class="p-price">Custom <small>/ talk to us</small></div><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Business</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited agents &amp; listings</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority activation &amp; support</li></ul><a class="btn btn-ghost" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="wrap">
+    <h2>Get your agency out of the group chat.</h2>
+    <p>Register today, get activated, approve your team — and run every deal from one place.</p>
+    <div class="hero-cta">
+      <a class="btn btn-lg btn-on-dark" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register your agency →</a>
+      <a class="btn btn-lg btn-outline-dark" href="#product">Replay the tour</a>
+    </div>
+    <p class="hero-note">Agents can join at <a href="https://stategenapp.vercel.app/signup/agent" target="_blank" rel="noopener">signup/agent</a> — your manager approves you in.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <div class="brand"><svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="7" fill="#3f6fbc"/><path d="M9 21V13l7-4 7 4v8" stroke="#fff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M13 21v-4h6v4" stroke="#9ec0f2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg> StateGen</div>
+      <p>The CRM built for real estate agencies. Matching, pipeline and follow-ups in one shared workspace.</p>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col"><h6>Product</h6><a href="#product">Overview</a><a href="#features">Features</a><a href="#contact">Contact</a><a href="#plans">Plans</a></div>
+      <div class="foot-col"><h6>Get started</h6><a href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register agency ↗</a><a href="https://stategenapp.vercel.app/signup/agent" target="_blank" rel="noopener">Agent sign up ↗</a><a href="#contact">Contact</a></div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 StateGen. Built for real estate professionals.</span><span>stategenapp.vercel.app</span></div>
+</footer>
+
+<!-- ============ STICKY CONTACT BAR ============ -->
+<div class="contact-bar">
+  <div class="cb-inner">
+    <span class="cb-text">Ready to organize your agency? <b>Message us now.</b></span>
+    <a class="cb-btn" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.06 8.06 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09h-.01a8.1 8.1 0 0 1-4.12-1.13l-.29-.17-3.06.8.82-2.98-.19-.31a8.07 8.07 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09Zm-2.79 4.35c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg>
+      Contact us
+    </a>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  /* ---------- THEME ---------- */
+  var root = document.documentElement, themeIcon = $("#themeIcon");
+  var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  var moon = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>';
+  function isDark() { var t = root.getAttribute("data-theme"); return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches; }
+  function paintIcon() { themeIcon.innerHTML = isDark() ? sun : moon; }
+  $("#themeBtn").addEventListener("click", function () { root.setAttribute("data-theme", isDark() ? "light" : "dark"); paintIcon(); });
+  paintIcon();
+
+  /* ---------- NAV + REVEAL ---------- */
+  var nav = $("#nav");
+  var onScroll = function () { nav.classList.toggle("scrolled", window.scrollY > 8); };
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  $$(".reveal").forEach(function (el) { io.observe(el); });
+
+  /* ---------- SHARED DATA + SCORING ---------- */
+  var AREAS = ["Achrafieh", "Downtown", "Hamra", "Jounieh", "Verdun", "Baabda", "Hazmieh", "Mar Mikhael"];
+  var TYPES = ["Apartment", "Villa", "Commercial", "Land"];
+  var properties = [
+    { title: "Sioufi Duplex", area: "Achrafieh", type: "Apartment", price: 265000, beds: 2 },
+    { title: "Carré d'Or Flat", area: "Achrafieh", type: "Apartment", price: 242000, beds: 2 },
+    { title: "Mar Mikhael Loft", area: "Mar Mikhael", type: "Apartment", price: 230000, beds: 1 },
+    { title: "Beirut Central Retail", area: "Downtown", type: "Commercial", price: 790000, beds: 0 },
+    { title: "Foch Office Floor", area: "Downtown", type: "Commercial", price: 850000, beds: 0 },
+    { title: "Sea-view Villa", area: "Jounieh", type: "Villa", price: 720000, beds: 4 },
+    { title: "Hazmieh Apartment", area: "Hazmieh", type: "Apartment", price: 300000, beds: 3 },
+    { title: "Verdun Two-Bed", area: "Verdun", type: "Apartment", price: 235000, beds: 2 },
+    { title: "Baabda Land Plot", area: "Baabda", type: "Land", price: 310000, beds: 0 },
+    { title: "Hamra City Flat", area: "Hamra", type: "Apartment", price: 205000, beds: 1 }
+  ];
+  var clients = [
+    { name: "Rania K.", full: "Rania Khoury", tag: "BUYER · PRIORITY", color: "#5e8fd6", area: "Achrafieh", type: "Apartment", budget: 250000, beds: 2 },
+    { name: "Georges M.", full: "Georges Moukarzel", tag: "INVESTOR", color: "#2f9e6b", area: "Downtown", type: "Commercial", budget: 800000, beds: 0 },
+    { name: "Karim S.", full: "Karim Sleiman", tag: "BUYER", color: "#c79a4b", area: "Jounieh", type: "Villa", budget: 700000, beds: 4 },
+    { name: "Lea T.", full: "Lea Tannous", tag: "BUYER · ACTIVE", color: "#d9663f", area: "Verdun", type: "Apartment", budget: 235000, beds: 2 }
+  ];
+  function money(n) { return n >= 1000 ? "$" + Math.round(n / 1000) + "k" : "$" + n; }
+  function score(c, p) {
+    var s = 0;
+    if (p.type === c.type) s += 30; else if ((c.type === "Apartment" && p.type === "Villa") || (c.type === "Villa" && p.type === "Apartment")) s += 8;
+    s += (p.area === c.area) ? 34 : 6;
+    var ratio = Math.min(c.budget, p.price) / Math.max(c.budget, p.price);
+    s += Math.round(ratio * 24);
+    if (c.type === "Commercial" || c.type === "Land") s += 12;
+    else s += Math.max(0, 12 - Math.abs((p.beds || 0) - c.beds) * 5);
+    return Math.max(4, Math.min(99, Math.round(s)));
+  }
+  function topMatches(c, n) {
+    return properties.map(function (p) { return { p: p, s: score(c, p) }; })
+      .sort(function (a, b) { return b.s - a.s; }).slice(0, n);
+  }
+
+  /* ---------- HERO: editable matcher ---------- */
+  var chipsEl = $("#chips"), matchesEl = $("#matches");
+  var areaSel = $("#cArea"), typeSel = $("#cType"), budget = $("#cBudget"), budgetVal = $("#cBudgetVal"), bedsEl = $("#cBeds");
+  var state = { area: "Achrafieh", type: "Apartment", budget: 250000, beds: 2 };
+  var rotate = null, touched = false;
+
+  AREAS.forEach(function (a) { var o = document.createElement("option"); o.value = a; o.textContent = a; areaSel.appendChild(o); });
+  TYPES.forEach(function (t) { var o = document.createElement("option"); o.value = t; o.textContent = t; typeSel.appendChild(o); });
+
+  clients.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.className = "chip" + (i === 0 ? " active" : "");
+    b.innerHTML = '<span class="av" style="background:' + c.color + '">' + c.name.charAt(0) + '</span>' + c.name;
+    b.addEventListener("click", function () { applyClient(i, true); });
+    chipsEl.appendChild(b);
+  });
+
+  function syncControls() {
+    areaSel.value = state.area; typeSel.value = state.type;
+    budget.value = state.budget; budgetVal.textContent = money(state.budget);
+    bedsEl.textContent = state.beds;
+  }
+  function renderHero() {
+    var top = topMatches(state, 4);
+    matchesEl.innerHTML = "";
+    top.forEach(function (r, idx) {
+      var row = document.createElement("div");
+      row.className = "match" + (idx === 0 ? " top" : "");
+      row.innerHTML =
+        '<div class="m-title">' + r.p.title + (idx === 0 ? ' <span style="font-family:var(--font-mono);font-size:10px;color:#63d79a;">★ best fit</span>' : '') + '</div>' +
+        '<div class="m-score tnum">' + r.s + '</div>' +
+        '<div class="m-meta">' + r.p.area + ' · ' + r.p.type + (r.p.beds ? ' · ' + r.p.beds + 'bd' : '') + ' · ' + money(r.p.price) + '</div>' +
+        '<div class="m-bar"><i></i></div>';
+      matchesEl.appendChild(row);
+      var bar = $(".m-bar > i", row);
+      requestAnimationFrame(function () { setTimeout(function () { bar.style.width = r.s + "%"; }, 50 + idx * 80); });
+    });
+  }
+  function matchChipToState() {
+    var hit = -1;
+    clients.forEach(function (c, i) { if (c.area === state.area && c.type === state.type && c.beds === state.beds && c.budget === state.budget) hit = i; });
+    $$(".chip", chipsEl).forEach(function (ch, i) { ch.classList.toggle("active", i === hit); });
+  }
+  function applyClient(i, stopRotate) {
+    var c = clients[i];
+    state = { area: c.area, type: c.type, budget: c.budget, beds: c.beds };
+    syncControls(); renderHero();
+    $$(".chip", chipsEl).forEach(function (ch, idx) { ch.classList.toggle("active", idx === i); });
+    if (stopRotate) { touched = true; if (rotate) { clearInterval(rotate); rotate = null; } }
+  }
+  function onEdit() { touched = true; if (rotate) { clearInterval(rotate); rotate = null; } state.area = areaSel.value; state.type = typeSel.value; state.budget = parseInt(budget.value, 10); budgetVal.textContent = money(state.budget); renderHero(); matchChipToState(); }
+  areaSel.addEventListener("change", onEdit);
+  typeSel.addEventListener("change", onEdit);
+  budget.addEventListener("input", function () { budgetVal.textContent = money(parseInt(budget.value, 10)); });
+  budget.addEventListener("input", onEdit);
+  $("#bedsUp").addEventListener("click", function () { state.beds = Math.min(5, state.beds + 1); bedsEl.textContent = state.beds; onEditBeds(); });
+  $("#bedsDown").addEventListener("click", function () { state.beds = Math.max(0, state.beds - 1); bedsEl.textContent = state.beds; onEditBeds(); });
+  function onEditBeds() { touched = true; if (rotate) { clearInterval(rotate); rotate = null; } renderHero(); matchChipToState(); }
+
+  syncControls(); renderHero();
+  if (!reduced) {
+    var ri = 0;
+    rotate = setInterval(function () { if (touched) return; ri = (ri + 1) % clients.length; applyClient(ri, false); }, 4600);
+  }
+
+  /* ---------- CHAT before/after ---------- */
+  var chatStream = $("#chatStream"), chatTitle = $("#chatTitle");
+  var beforeMsgs = [
+    { who: "them", day: "August 19", t: "Anyone have a 2BR in Achrafieh under $260k? Client ready to view this week.", m: "Rania · 9:04 PM" },
+    { who: "them", day: "August 19", t: "Georges has the Sioufi Duplex — great match 👌", m: "Manager · 9:12 PM" },
+    { who: "me", day: "August 19", t: "Sharing it here 👇", card: { kind: "property", title: "Sioufi Duplex", meta: "Achrafieh · Apartment · 2 bed", price: "$265,000" }, m: "Georges · 9:15 PM" },
+    { who: "them", day: "August 20", t: "Perfect fit. Here's her profile 👇", card: { kind: "client", name: "Nadia H.", av: "N", color: "#d9663f", tag: "Buyer · Priority", meta: "Achrafieh · 2 bed · $250k budget" }, m: "Rania · 10:02 AM" },
+    { who: "me", day: "August 20", t: "Booked her a viewing for Thursday 🙌", m: "Georges · 10:20 AM" }
+  ];
+  var afterSteps = [
+    { ic: "match", b: "Lead auto-matched", s: "Rania K. → Sioufi Duplex, Achrafieh", badge: "96%" },
+    { ic: "wa", b: "WhatsApp follow-up sent", s: "Automatically, within the hour", badge: "sent" },
+    { ic: "cal", b: "Viewing booked", s: "On the shared team calendar", badge: "Wed" },
+    { ic: "won", b: "Deal moved to Won", s: "Commission logged to the agency", badge: "$8.0k" }
+  ];
+  var icons = {
+    match: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h6M4 12h6M4 17h6M14 12l3 3 5-6"/></svg>',
+    wa: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke-linejoin="round"/></svg>',
+    cal: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4" stroke-linecap="round"/></svg>',
+    won: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+  };
+  var chatMode = "before", chatTimers = [], lastDay = null;
+  function clearChatTimers() { chatTimers.forEach(clearTimeout); chatTimers = []; }
+  var sgLogo = '<svg width="12" height="12" viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="7" fill="#3f6fbc"/><path d="M9 21V13l7-4 7 4v8" stroke="#fff" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+  function cardHTML(c) {
+    if (c.kind === "property") {
+      return '<div class="share-card"><div class="sc-head">' + sgLogo + ' Shared from StateGen · Property</div>' +
+        '<div class="sc-body"><div class="sc-thumb prop"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 21V9l9-6 9 6v12M9 21v-6h6v6"/></svg></div>' +
+        '<div class="sc-info"><b>' + c.title + '</b><span>' + c.meta + '</span><span class="sc-price">' + c.price + '</span></div></div></div>';
+    }
+    return '<div class="share-card"><div class="sc-head">' + sgLogo + ' Shared from StateGen · Client</div>' +
+      '<div class="sc-body"><div class="sc-thumb client" style="background:' + c.color + '">' + c.av + '</div>' +
+      '<div class="sc-info"><b>' + c.name + '</b><span class="sc-tag">' + c.tag + '</span><span>' + c.meta + '</span></div></div></div>';
+  }
+  function playChat() {
+    clearChatTimers(); chatStream.innerHTML = ""; lastDay = null;
+    var items = chatMode === "before" ? beforeMsgs : afterSteps;
+    var step = reduced ? 0 : 640;
+    items.forEach(function (it, i) {
+      chatTimers.push(setTimeout(function () {
+        if (chatMode === "before") {
+          if (it.day && it.day !== lastDay) {
+            lastDay = it.day;
+            var dv = document.createElement("div");
+            dv.className = "chat-daydiv";
+            dv.innerHTML = "<span>" + it.day + "</span>";
+            chatStream.appendChild(dv);
+          }
+          var el = document.createElement("div");
+          el.className = "bubble " + it.who + (it.card ? " has-card" : "");
+          var inner = it.card ? ((it.t ? '<span class="b-cap">' + it.t + '</span>' : "") + cardHTML(it.card)) : it.t;
+          el.innerHTML = inner + '<small>' + it.m + '</small>';
+          chatStream.appendChild(el);
+        } else {
+          var st = document.createElement("div");
+          st.className = "sg-step";
+          st.innerHTML = '<span class="sg-ic">' + icons[it.ic] + '</span><div><b>' + it.b + '</b><span>' + it.s + '</span></div><span class="sg-badge">' + it.badge + '</span>';
+          chatStream.appendChild(st);
+        }
+      }, i * step));
+    });
+    chatTimers.push(setTimeout(function () {
+      var v = document.createElement("div");
+      v.className = "chat-verdict won";
+      v.textContent = chatMode === "before" ? "— viewing booked —" : "— deal won —";
+      chatStream.appendChild(v);
+    }, items.length * step));
+  }
+  function setChatMode(mode) {
+    chatMode = mode;
+    $("#segBefore").classList.toggle("active", mode === "before");
+    $("#segAfter").classList.toggle("active", mode === "after");
+    chatTitle.textContent = mode === "before" ? "Agency group chat" : "Inside StateGen";
+    playChat();
+  }
+  $("#segBefore").addEventListener("click", function () { setChatMode("before"); });
+  $("#segAfter").addEventListener("click", function () { setChatMode("after"); });
+  $("#replayBtn").addEventListener("click", playChat);
+  var chatObs = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { playChat(); chatObs.disconnect(); } }); }, { threshold: 0.3 });
+  chatObs.observe($(".chat-mock"));
+
+  /* ---------- SHOWCASE TABS ---------- */
+  var urls = { dash: "stategenapp.vercel.app/dashboard", pipe: "stategenapp.vercel.app/pipeline", match: "stategenapp.vercel.app/clients", cal: "stategenapp.vercel.app/calendar" };
+  var screenUrl = $("#screenUrl");
+  $$(".tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      var id = tab.getAttribute("data-tab");
+      $$(".tab").forEach(function (t) { t.classList.toggle("active", t === tab); });
+      $$(".panel").forEach(function (p) { p.classList.toggle("active", p.getAttribute("data-panel") === id); });
+      if (urls[id]) screenUrl.textContent = urls[id];
+      if (id === "dash") animateStats();
+    });
+  });
+
+  /* ---------- DASHBOARD (year filter + chart) ---------- */
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"];
+  var yearData = {
+    "2026": { listings: 48, clients: 126, deals: 19, vol: 284, bars: [42, 58, 36, 70, 52, 88, 64], trend: { listings: "+6 this week", clients: "+11 this week", deals: "4 near close", vol: "2026 YTD" } },
+    "2025": { listings: 42, clients: 108, deals: 16, vol: 231, bars: [30, 41, 52, 38, 60, 74, 55], trend: { listings: "over the year", clients: "over the year", deals: "avg in flight", vol: "2025 total" } },
+    "2024": { listings: 31, clients: 84, deals: 12, vol: 176, bars: [22, 28, 34, 30, 45, 52, 40], trend: { listings: "over the year", clients: "over the year", deals: "avg in flight", vol: "2024 total" } }
+  };
+  var yearSel = $("#yearSelect"), barMini = $("#barMini"), chartTip = $("#chartTip");
+  var curYear = "2026";
+  function fmtVal(v) { return "$" + v + "k"; }
+  function drawBars(year) {
+    var d = yearData[year], max = Math.max.apply(null, d.bars);
+    barMini.innerHTML = "";
+    d.bars.forEach(function (v, i) {
+      var col = document.createElement("div"); col.className = "bcol";
+      col.innerHTML = '<i style="height:0%"></i><span class="bx">' + months[i] + '</span>';
+      barMini.appendChild(col);
+      var bar = $("i", col), h = Math.round((v / max) * 100);
+      requestAnimationFrame(function () { setTimeout(function () { bar.style.height = h + "%"; }, 40 + i * 55); });
+      col.addEventListener("mouseenter", function () {
+        chartTip.textContent = months[i] + " · " + fmtVal(v);
+        chartTip.style.left = (barMini.offsetLeft + col.offsetLeft + col.offsetWidth / 2) + "px";
+        chartTip.style.top = (barMini.offsetTop - 4) + "px";
+        chartTip.style.opacity = "1";
+      });
+      col.addEventListener("mouseleave", function () { chartTip.style.opacity = "0"; });
+    });
+    var best = Math.max.apply(null, d.bars), bi = d.bars.indexOf(best);
+    $("#bestMonth").textContent = ({ Jan: "January", Feb: "February", Mar: "March", Apr: "April", May: "May", Jun: "June", Jul: "July" })[months[bi]];
+    $("#bestVal").textContent = fmtVal(best);
+    $("#chartYear").textContent = year;
+  }
+  function animateStats() {
+    var d = yearData[curYear];
+    countTo($('[data-stat="listings"]'), d.listings, "");
+    countTo($('[data-stat="clients"]'), d.clients, "");
+    countTo($('[data-stat="deals"]'), d.deals, "");
+    countTo($('[data-stat="volpre"]'), d.vol, "$");
+    $('[data-trend="listings"]').textContent = d.trend.listings;
+    $('[data-trend="clients"]').textContent = d.trend.clients;
+    $('[data-trend="deals"]').textContent = d.trend.deals;
+    $('[data-trend="vol"]').textContent = d.trend.vol;
+  }
+  function countTo(el, target, pre) {
+    if (!el) return;
+    if (reduced) { el.textContent = pre + target; return; }
+    var start = 0, t0 = null, dur = 700;
+    function tick(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / dur); var v = Math.round(start + (target - start) * (1 - Math.pow(1 - p, 3))); el.textContent = pre + v; if (p < 1) requestAnimationFrame(tick); }
+    requestAnimationFrame(tick);
+  }
+  yearSel.addEventListener("change", function () { curYear = yearSel.value; drawBars(curYear); animateStats(); });
+  var dashObs = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { drawBars(curYear); animateStats(); dashObs.disconnect(); } }); }, { threshold: 0.25 });
+  dashObs.observe($('[data-panel="dash"]'));
+
+  /* ---------- SHOWCASE MATCHING ---------- */
+  var msSel = $("#msClientSelect"), msResults = $("#msResults");
+  clients.forEach(function (c, i) { var o = document.createElement("option"); o.value = i; o.textContent = c.full; msSel.appendChild(o); });
+  function renderMs(i) {
+    var c = clients[i];
+    $("#msAv").textContent = c.full.charAt(0); $("#msAv").style.background = c.color;
+    $("#msName").textContent = c.full; $("#msTag").textContent = c.tag;
+    $("#msArea").textContent = c.area; $("#msType").textContent = c.type;
+    $("#msBudget").textContent = money(c.budget); $("#msBeds").textContent = c.beds || "—";
+    var top = topMatches(c, 4);
+    msResults.innerHTML = "";
+    top.forEach(function (r, idx) {
+      var row = document.createElement("div"); row.className = "ms-res" + (idx === 0 ? " hi" : "");
+      row.innerHTML = '<div class="r-t">' + r.p.title + '</div><div class="r-m">' + r.p.area + ' · ' + r.p.type + (r.p.beds ? ' · ' + r.p.beds + 'bd' : '') + ' · ' + money(r.p.price) + '</div><div class="r-s">' + r.s + '</div><div class="r-bar"><i></i></div>';
+      msResults.appendChild(row);
+      var bar = $(".r-bar > i", row);
+      requestAnimationFrame(function () { setTimeout(function () { bar.style.width = r.s + "%"; }, 50 + idx * 80); });
+    });
+  }
+  msSel.addEventListener("change", function () { renderMs(parseInt(msSel.value, 10)); });
+  renderMs(0);
+
+  /* ---------- PIPELINE ---------- */
+  var stages = [
+    { key: "new", label: "New", color: "#5e8fd6" }, { key: "contacted", label: "Contacted", color: "#7c6fd6" },
+    { key: "viewing", label: "Viewing", color: "#c79a4b" }, { key: "offer", label: "Offer", color: "#d9663f" },
+    { key: "contract", label: "Contract", color: "#3f9e8c" }, { key: "won", label: "Won", color: "#2f9e6b" }
+  ];
+  var deals = [
+    { id: 1, name: "Rania K.", sub: "Achrafieh · 2BR", val: "$8.0k", av: "R", color: "#5e8fd6", stage: "viewing" },
+    { id: 2, name: "Georges M.", sub: "Downtown retail", val: "$23k", av: "G", color: "#2f9e6b", stage: "offer" },
+    { id: 3, name: "Karim S.", sub: "Jounieh villa", val: "$21k", av: "K", color: "#c79a4b", stage: "contacted" },
+    { id: 4, name: "Lea T.", sub: "Verdun rental", val: "$1.9k", av: "L", color: "#d9663f", stage: "new" },
+    { id: 5, name: "Samir B.", sub: "Baabda land", val: "$9.3k", av: "S", color: "#7c6fd6", stage: "contract" },
+    { id: 6, name: "Maya F.", sub: "Hazmieh 3BR", val: "$11k", av: "M", color: "#3f9e8c", stage: "viewing" }
+  ];
+  var kanban = $("#kanban"), dragId = null;
+  function drawKanban() {
+    kanban.innerHTML = "";
+    stages.forEach(function (st) {
+      var col = document.createElement("div"); col.className = "kb-col"; col.setAttribute("data-stage", st.key);
+      var inS = deals.filter(function (d) { return d.stage === st.key; });
+      col.innerHTML = '<h6><span><span class="stage-dot" style="background:' + st.color + '"></span>' + st.label + '</span><span class="cnt">' + inS.length + '</span></h6>';
+      inS.forEach(function (d) {
+        var card = document.createElement("div"); card.className = "deal"; card.setAttribute("draggable", "true"); card.setAttribute("data-id", d.id);
+        card.innerHTML = '<div class="d-top">' + d.name + '</div><div class="d-sub">' + d.sub + '</div><div class="d-foot"><span class="d-val">' + d.val + '</span><span class="d-av" style="background:' + d.color + '">' + d.av + '</span></div>';
+        col.appendChild(card);
+      });
+      kanban.appendChild(col);
+    });
+    wireDeals();
+  }
+  function advance(id) { var d = deals.find(function (x) { return x.id === id; }); if (!d) return; var idx = stages.findIndex(function (s) { return s.key === d.stage; }); d.stage = stages[Math.min(idx + 1, stages.length - 1)].key; drawKanban(); }
+  function moveTo(id, k) { var d = deals.find(function (x) { return x.id === id; }); if (d) { d.stage = k; drawKanban(); } }
+  function wireDeals() {
+    $$(".deal", kanban).forEach(function (card) {
+      var id = parseInt(card.getAttribute("data-id"), 10);
+      card.addEventListener("click", function () { advance(id); });
+      card.addEventListener("dragstart", function () { dragId = id; card.classList.add("dragging"); });
+      card.addEventListener("dragend", function () { dragId = null; card.classList.remove("dragging"); $$(".kb-col", kanban).forEach(function (c) { c.classList.remove("drop-hint"); }); });
+    });
+    $$(".kb-col", kanban).forEach(function (col) {
+      col.addEventListener("dragover", function (e) { e.preventDefault(); col.classList.add("drop-hint"); });
+      col.addEventListener("dragleave", function () { col.classList.remove("drop-hint"); });
+      col.addEventListener("drop", function (e) { e.preventDefault(); col.classList.remove("drop-hint"); if (dragId != null) moveTo(dragId, col.getAttribute("data-stage")); });
+    });
+  }
+  drawKanban();
+
+  /* ---------- CALENDAR ---------- */
+  var dow = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var events = {
+    "2026-8-10": [{ t: "v", label: "Viewing · Sioufi Duplex" }],
+    "2026-8-11": [{ t: "m", label: "Team sync" }],
+    "2026-8-12": [{ t: "v", label: "Viewing · Sea-view Villa" }, { t: "f", label: "Follow-up · Georges M." }],
+    "2026-8-13": [{ t: "f", label: "Call · Nadia H." }],
+    "2026-8-15": [{ t: "m", label: "Offer meeting · Downtown" }],
+    "2026-8-17": [{ t: "v", label: "Viewing · Retail unit" }],
+    "2026-8-19": [{ t: "f", label: "Follow-up · 3 clients" }],
+    "2026-8-20": [{ t: "m", label: "Contract signing · Baabda" }],
+    "2026-9-2": [{ t: "v", label: "Viewing · Verdun 2BR" }],
+    "2026-9-4": [{ t: "m", label: "Team sync" }],
+    "2026-9-9": [{ t: "f", label: "Follow-up · 2 clients" }],
+    "2026-9-14": [{ t: "m", label: "Offer meeting" }],
+    "2026-9-21": [{ t: "m", label: "Contract signing" }]
+  };
+  var pillLabel = { v: "Viewing", m: "Meeting", f: "Follow-up" };
+  var today = { y: 2026, m: 8, d: 19 };
+  var view = { y: 2026, m: 8 }; // month is 1-based
+  var minMonth = 2026 * 12 + 8, maxMonth = 2026 * 12 + 9;
+  var selected = "2026-8-19";
+  var calEl = $("#cal"), calDetail = $("#calDetail"), calMonthEl = $("#calMonth");
+
+  function keyOf(y, m, d) { return y + "-" + m + "-" + d; }
+  function renderCal() {
+    calMonthEl.textContent = monthNames[view.m - 1] + " " + view.y;
+    var first = new Date(view.y, view.m - 1, 1);
+    var startDow = (first.getDay() + 6) % 7; // Mon=0
+    var days = new Date(view.y, view.m, 0).getDate();
+    calEl.innerHTML = "";
+    dow.forEach(function (d) { var h = document.createElement("div"); h.className = "cal-dow"; h.textContent = d; calEl.appendChild(h); });
+    for (var i = 0; i < startDow; i++) { var e = document.createElement("div"); e.className = "day empty"; calEl.appendChild(e); }
+    for (var day = 1; day <= days; day++) {
+      var k = keyOf(view.y, view.m, day);
+      var cell = document.createElement("div"); cell.className = "day";
+      if (view.y === today.y && view.m === today.m && day === today.d) cell.classList.add("today");
+      if (k === selected) cell.classList.add("selected");
+      var evs = events[k] || [];
+      var dots = evs.map(function (ev) { return '<span class="edot ' + ev.t + '"></span>'; }).join("");
+      cell.innerHTML = '<span class="dn">' + day + '</span>' + (dots ? '<span class="dots-row">' + dots + '</span>' : '');
+      (function (kk) { cell.addEventListener("click", function () { selected = kk; renderCal(); renderDetail(); }); })(k);
+      calEl.appendChild(cell);
+    }
+    $("#calPrev").disabled = (view.y * 12 + view.m) <= minMonth;
+    $("#calNext").disabled = (view.y * 12 + view.m) >= maxMonth;
+  }
+  function renderDetail() {
+    var parts = selected.split("-"), y = +parts[0], m = +parts[1], d = +parts[2];
+    var evs = events[selected] || [];
+    var head = monthNames[m - 1] + " " + d + (y === today.y && m === today.m && d === today.d ? " · Today" : "");
+    var body = evs.length
+      ? evs.map(function (ev) { return '<div class="cal-ev"><span class="ev-pill ' + ev.t + '">' + pillLabel[ev.t] + '</span> ' + ev.label + '</div>'; }).join("")
+      : '<div class="cal-none">No events scheduled. Click a highlighted day to see viewings, meetings and follow-ups.</div>';
+    calDetail.innerHTML = '<h6>' + head + '</h6>' + body;
+  }
+  $("#calPrev").addEventListener("click", function () { var t = view.y * 12 + view.m - 1; if (t < minMonth) return; view.y = Math.floor((t - 1) / 12); view.m = ((t - 1) % 12) + 1; renderCal(); });
+  $("#calNext").addEventListener("click", function () { var t = view.y * 12 + view.m + 1; if (t > maxMonth) return; view.y = Math.floor((t - 1) / 12); view.m = ((t - 1) % 12) + 1; renderCal(); });
+  renderCal(); renderDetail();
+
+  /* ---------- FEATURES accordion ---------- */
+  var featData = [
+    { ic: '<path d="M4 7h6M4 12h6M4 17h6M14 12l3 3 5-6"/>', h: "Smart matching", p: "Every client's area, type, budget and bedrooms are scored against every listing. Agents see the best fits ranked — no more matching from memory.", tag: "auto-ranked", more: "Open a client and the top listings appear in order, each with a match score and the reasons behind it. Change a preference and the ranking updates instantly — exactly like the matcher at the top of this page." },
+    { ic: '<rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/>', h: "Deal pipeline", p: "A visual board from New → Contacted → Viewing → Offer → Contract → Won. Drag deals through stages and see where every one stands at a glance.", tag: "kanban", more: "Every deal carries its client, property and expected commission. Drag it forward as it progresses; the manager's dashboard totals update in real time. It's the same board you tried in the Pipeline tab above." },
+    { ic: '<path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke-linejoin="round"/>', h: "WhatsApp reminders", p: "Trigger a follow-up from the app, or let StateGen fire daily reminders for pending leads automatically. No lead goes cold because someone forgot.", tag: "automated", more: "Agents send a follow-up in one tap, and a daily job sweeps every lead that's due and nudges the agent — so the buyer who messaged at 9pm always gets an answer the next morning." },
+    { ic: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" stroke-linecap="round" stroke-linejoin="round"/>', h: "Clients & listings", p: "Full profiles for buyers, renters and investors — colour-coded by type and status. A full detail view for every property.", tag: "colour-coded", more: "Status at a glance: priority, active, cold, won or lost, each with its own colour. Listings hold price, type, area, bedrooms and status, so any agent can pick up any client without a handover call." },
+    { ic: '<path d="M6 9V4h12v5M6 9h12M6 9l-2 6h16l-2-6M9 21v-4h6v4"/>', h: "Listing alerts", p: "When a new property matches a client's preferences, StateGen flags it — so the right buyer hears about the right listing without manual outreach.", tag: "proactive", more: "Add a listing and StateGen checks it against every active client's criteria. The agents with matching buyers get alerted automatically — new stock reaches the right people the moment it lands." },
+    { ic: '<path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>', h: "Analytics & roles", p: "Live stats on listings, clients, deals and commission — filter by year. Managers see the whole agency; agents see only their own book.", tag: "role-based", more: "Managers get the agency-wide view — every agent, every deal, total commission volume by year. Agents see only what's theirs. Same data, scoped by role, no spreadsheets to reconcile." }
+  ];
+  var featGrid = $("#featGrid");
+  featData.forEach(function (f, i) {
+    var card = document.createElement("div");
+    card.className = "feat reveal d" + ((i % 3) + 1);
+    card.setAttribute("role", "button"); card.setAttribute("tabindex", "0"); card.setAttribute("aria-expanded", "false");
+    card.innerHTML =
+      '<div class="f-head"><div class="f-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + f.ic + '</svg></div>' +
+      '<span class="f-chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div>' +
+      '<h3>' + f.h + '</h3><p>' + f.p + '</p><span class="f-tag">' + f.tag + '</span>' +
+      '<div class="f-more"><div class="f-more-inner"><p>' + f.more + '</p></div></div>';
+    function toggle() { var open = card.classList.toggle("open"); card.setAttribute("aria-expanded", open ? "true" : "false"); }
+    card.addEventListener("click", toggle);
+    card.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+    featGrid.appendChild(card);
+    io.observe(card);
+  });
+
+  /* ---------- WHO tabs ---------- */
+  $$(".who-tabs .seg button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var w = btn.getAttribute("data-who");
+      $$(".who-tabs .seg button").forEach(function (b) { b.classList.toggle("active", b === btn); });
+      $$(".who-panel").forEach(function (p) { p.classList.toggle("active", p.getAttribute("data-whopanel") === w); });
+    });
+  });
+
+  /* ---------- PLANS size slider ---------- */
+  var sizeSlider = $("#sizeSlider"), agentCount = $("#agentCount"), recPlan = $("#recPlan");
+  function recommend(n) {
+    var plan = n <= 5 ? "Team" : n <= 20 ? "Business" : "Unlimited";
+    agentCount.textContent = n; recPlan.textContent = plan;
+    $$(".plan").forEach(function (p) { p.classList.toggle("rec", p.getAttribute("data-plan") === plan); });
+  }
+  sizeSlider.addEventListener("input", function () { recommend(parseInt(sizeSlider.value, 10)); });
+  recommend(8);
+
+  /* ---------- CUSTOM DOT + RING CURSOR ---------- */
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var cdot = document.createElement("div"); cdot.className = "cursor-dot";
+    var cring = document.createElement("div"); cring.className = "cursor-ring";
+    document.body.appendChild(cdot); document.body.appendChild(cring);
+    var mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+    var hoverSel = 'a, button, select, input, label, .deal, .chip, .tab, .feat, .day:not(.empty), [role="button"]';
+    document.addEventListener("mousemove", function (e) {
+      mx = e.clientX; my = e.clientY;
+      document.body.classList.add("cursor-on");
+      cdot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)";
+      cring.classList.toggle("hover", !!(e.target.closest && e.target.closest(hoverSel)));
+    }, { passive: true });
+    document.addEventListener("mousedown", function () { cring.classList.add("down"); });
+    document.addEventListener("mouseup", function () { cring.classList.remove("down"); });
+    document.addEventListener("mouseleave", function () { document.body.classList.remove("cursor-on"); });
+    document.addEventListener("mouseenter", function () { document.body.classList.add("cursor-on"); });
+    (function loop() {
+      var k = reduced ? 1 : 0.2;
+      rx += (mx - rx) * k; ry += (my - ry) * k;
+      cring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
