@@ -373,6 +373,17 @@
   .feat.open .f-more { grid-template-rows: 1fr; }
   .feat .f-more-inner { overflow: hidden; }
   .feat .f-more p { font-size: 13.5px; color: var(--ink-soft); padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--line-soft); }
+  /* "also included" compact grid */
+  .also-wrap { margin-top: 40px; padding-top: 34px; border-top: 1px solid var(--line); }
+  .also-title { text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; margin: 0 0 26px; }
+  .also-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .also { display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--line-soft); background: var(--ground); transition: border-color 0.2s, transform 0.2s; }
+  .also:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .also .a-ic { flex: none; width: 36px; height: 36px; border-radius: 9px; background: var(--accent-soft); color: var(--accent-deep); display: grid; place-items: center; }
+  .also b { display: block; color: var(--ink); font-size: 14.5px; font-weight: 600; }
+  .also span { display: block; color: var(--ink-mute); font-size: 12.5px; margin-top: 2px; line-height: 1.4; }
+  @media (max-width: 780px) { .also-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .also-grid { grid-template-columns: 1fr; } }
 
   /* ============ HOW ============ */
   .how { background: var(--ground); }
@@ -766,6 +777,21 @@
       <p>Not a generic CRM bent to fit real estate. Every feature is shaped by the way a property team works.</p>
     </div>
     <div class="feat-grid" id="featGrid"></div>
+
+    <div class="also-wrap reveal">
+      <h4 class="also-title">Also included in every plan</h4>
+      <div class="also-grid">
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7M12 3v12M8 11l4 4 4-4"/></svg></span><div><b>Offers tracking</b><span>Log and compare offers on every deal.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg></span><div><b>Documents &amp; proofs</b><span>Attach contracts and down-payment proofs.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 9 4-2v10l-4-2"/></svg></span><div><b>Property video</b><span>Add video walkthroughs to any listing.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span><div><b>Activity feed</b><span>See who did what, and when, across the team.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM19 8v6M22 11h-6"/></svg></span><div><b>Team invites</b><span>Bring agents on board with a secure link.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span><div><b>Data export</b><span>Export clients, listings and deals anytime.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><div><b>Invoicing</b><span>Generate invoices straight from the app.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Built-in security</b><span>Rate-limited logins, admin PIN, failed-login alerts.</span></div></div>
+        <div class="also"><span class="a-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span><div><b>Made for mobile</b><span>Swipe navigation — works like an app on any phone.</span></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1298,7 +1324,10 @@
     { ic: '<path d="M21 11.5a8.4 8.4 0 0 1-11.9 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5Z" stroke-linejoin="round"/>', h: "WhatsApp reminders", p: "Trigger a follow-up from the app, or let StateGen fire daily reminders for pending leads automatically. No lead goes cold because someone forgot.", tag: "automated", more: "Agents send a follow-up in one tap, and a daily job sweeps every lead that's due and nudges the agent — so the buyer who messaged at 9pm always gets an answer the next morning." },
     { ic: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" stroke-linecap="round" stroke-linejoin="round"/>', h: "Clients & listings", p: "Full profiles for buyers, renters and investors — colour-coded by type and status. A full detail view for every property.", tag: "colour-coded", more: "Status at a glance: priority, active, cold, won or lost, each with its own colour. Listings hold price, type, area, bedrooms and status, so any agent can pick up any client without a handover call." },
     { ic: '<path d="M6 9V4h12v5M6 9h12M6 9l-2 6h16l-2-6M9 21v-4h6v4"/>', h: "Listing alerts", p: "When a new property matches a client's preferences, StateGen flags it — so the right buyer hears about the right listing without manual outreach.", tag: "proactive", more: "Add a listing and StateGen checks it against every active client's criteria. The agents with matching buyers get alerted automatically — new stock reaches the right people the moment it lands." },
-    { ic: '<path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>', h: "Analytics & roles", p: "Live stats on listings, clients, deals and commission — filter by year. Managers see the whole agency; agents see only their own book.", tag: "role-based", more: "Managers get the agency-wide view — every agent, every deal, total commission volume by year. Agents see only what's theirs. Same data, scoped by role, no spreadsheets to reconcile." }
+    { ic: '<path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>', h: "Analytics & roles", p: "Live stats on listings, clients, deals and commission — filter by year. Managers see the whole agency; agents see only their own book.", tag: "role-based", more: "Managers get the agency-wide view — every agent, every deal, total commission volume by year. Agents see only what's theirs. Same data, scoped by role, no spreadsheets to reconcile." },
+    { ic: '<path d="M12 3v12M8 11l4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round" stroke-linejoin="round"/>', h: "Bulk import", p: "Move your whole book in at once — import clients and properties straight from an Excel or CSV file.", tag: "one-click", more: "StateGen reads messy real-world spreadsheets, maps the columns for you, cleans the data and skips duplicates automatically. Switching from scattered sheets takes minutes, not weeks of retyping." },
+    { ic: '<path d="M12 3l1.7 4.5L18 9l-4.3 1.5L12 15l-1.7-4.5L6 9l4.3-1.5L12 3Z" stroke-linejoin="round"/><path d="M18.5 13.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1Z" stroke-linejoin="round"/>', h: "AI descriptions", p: "Let StateGen write polished listing descriptions for you — enter the specs, get ready-to-post copy.", tag: "AI-powered", more: "Give it the area, type, price and key features and the built-in AI drafts a clean, professional property description in seconds — ready to publish or tweak. No more staring at a blank box." },
+    { ic: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 3.9M15.4 6.6 8.6 10.5" stroke-linecap="round"/>', h: "Shareable listing pages", p: "Turn any listing into a clean public page you can send on WhatsApp or Instagram — and it captures the lead for you.", tag: "lead capture", more: "Share a property with a single link — the viewer needs no login. When they show interest, their details drop straight into your clients list, so a post on social turns into a real lead inside the app." }
   ];
   var featGrid = $("#featGrid");
   featData.forEach(function (f, i) {
