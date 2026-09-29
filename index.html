@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>StateGen — CRM for real estate agencies</title>
+<title>StateGen — Contact</title>
 <meta name="description" content="StateGen is the CRM built for real estate agencies. Client-property matching, a visual deal pipeline, and automated WhatsApp reminders in one place.">
 
 <style>
@@ -468,6 +468,7 @@
   }
 
   /* ===== Instagram contact additions ===== */
+  body { padding-bottom: 76px; } /* space for the sticky contact bar */
   .contact { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1000px; margin: 0 auto; }
   .contact-card { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 30px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ground); text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
@@ -492,11 +493,27 @@
   .cb-btn { display: inline-flex; align-items: center; gap: 9px; background: #25d366; color: #06351c; font-weight: 700; font-size: 15px; padding: 12px 22px; border-radius: 11px; white-space: nowrap; text-decoration: none; box-shadow: 0 6px 18px -6px rgba(37,211,102,0.6); transition: transform 0.15s, box-shadow 0.2s, background 0.2s; }
   .cb-btn:hover { background: #22c15e; box-shadow: 0 10px 24px -8px rgba(37,211,102,0.7); }
   .cb-btn:active { transform: translateY(1px); }
+  .cb-choose { position: relative; }
+  .cb-btn .cb-chev { transition: transform 0.2s; }
+  .cb-btn[aria-expanded="true"] .cb-chev { transform: rotate(180deg); }
+  .cb-menu { position: absolute; right: 0; bottom: calc(100% + 12px); min-width: 272px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 6px; display: flex; flex-direction: column; gap: 2px; opacity: 0; transform: translateY(10px) scale(0.98); transform-origin: bottom right; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.22,1,0.36,1); z-index: 61; }
+  .cb-menu.open { opacity: 1; transform: none; pointer-events: auto; }
+  .cb-menu a { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 10px; color: var(--ink); text-decoration: none; transition: background 0.15s; }
+  .cb-menu a:hover { background: var(--surface-2); }
+  .cb-menu .mi-ic { flex: none; width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; }
+  .cb-menu .mi-ic.wa { background: rgba(37,211,102,0.14); color: #1da851; }
+  .cb-menu .mi-ic.em { background: var(--accent-soft); color: var(--accent-deep); }
+  .cb-menu .mi-tx { display: flex; flex-direction: column; line-height: 1.25; }
+  .cb-menu .mi-tx b { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+  .cb-menu .mi-tx small { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); }
   @media (max-width: 640px) {
     .contact-grid { grid-template-columns: 1fr; }
     .cb-text { display: none; }
     .cb-inner { justify-content: center; padding: 10px 16px; }
     .cb-btn { width: 100%; justify-content: center; font-size: 16px; padding: 14px 22px; }
+    .cb-choose { width: 100%; }
+    .cb-menu { left: 0; right: 0; min-width: 0; }
+    body { padding-bottom: 74px; }
   }
 
   /* responsive */
@@ -569,7 +586,7 @@
     <div class="nav-links">
       <a class="navlink" href="#product">Product</a>
       <a class="navlink" href="#features">Features</a>
-      <a class="navlink" href="#how">How it works</a>
+      <a class="navlink" href="#contact">Contact</a>
       <a class="navlink" href="#plans">Plans</a>
       <button class="theme-toggle" id="themeBtn" aria-label="Toggle color theme" title="Toggle theme">
         <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
@@ -590,7 +607,7 @@
         <p class="hero-sub">StateGen is the CRM that runs your whole agency — client-property matching, a live deal pipeline, and automatic WhatsApp follow-ups. One platform. Your entire team.</p>
         <div class="hero-cta">
           <a class="btn btn-lg btn-on-dark" href="#product">See it in action →</a>
-          <a class="btn btn-lg btn-outline-dark" href="#how">How it works</a>
+          <a class="btn btn-lg btn-outline-dark" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener">Contact us</a>
         </div>
         <p class="hero-note">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -794,13 +811,35 @@
 </section>
 
 <!-- ============ HOW ============ -->
-<section class="band how" id="how">
+<section class="band contact" id="contact">
   <div class="wrap">
-    <div class="band-head center reveal"><span class="eyebrow">Getting started</span><h2>Your agency is live in three steps.</h2></div>
-    <div class="steps">
-      <div class="step reveal d1"><div class="s-num">1</div><h3>Register your agency</h3><p>Sign up as the owner at <a href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">signup/company</a>. Your account is created under your agency — ready to activate.</p></div>
-      <div class="step reveal d2"><div class="s-num">2</div><h3>Get activated</h3><p>Choose your plan and we activate your account with an expiry date. Renewal reminders arrive automatically 3 days before and on the day.</p></div>
-      <div class="step reveal d3"><div class="s-num">3</div><h3>Approve your team</h3><p>Agents sign up under your agency; you approve or reject each one. Once they're in, the whole team is working from the same board.</p></div>
+    <div class="band-head center reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Let's set up your agency.</h2>
+      <p>Message us on WhatsApp or send an email — we'll answer your questions and get you activated.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card wa reveal d1" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener">
+        <span class="cc-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.06 8.06 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09h-.01a8.1 8.1 0 0 1-4.12-1.13l-.29-.17-3.06.8.82-2.98-.19-.31a8.07 8.07 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09Zm-2.79 4.35c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span>
+        <h3>WhatsApp us</h3>
+        <p>The fastest way to reach us — tap to open a chat with our team right now.</p>
+        <span class="cc-val">+961 81 056 376</span>
+        <span class="cc-cta">Open WhatsApp chat →</span>
+      </a>
+      <a class="contact-card wa reveal d2" href="https://wa.me/96170762304?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener">
+        <span class="cc-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.06 8.06 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09h-.01a8.1 8.1 0 0 1-4.12-1.13l-.29-.17-3.06.8.82-2.98-.19-.31a8.07 8.07 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09Zm-2.79 4.35c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span>
+        <h3>WhatsApp — 2nd line</h3>
+        <p>Prefer our other number? Tap to chat with us on WhatsApp here too.</p>
+        <span class="cc-val">+961 70 762 304</span>
+        <span class="cc-cta">Open WhatsApp chat →</span>
+      </a>
+      <a class="contact-card em reveal d3" href="mailto:stategen0@gmail.com?subject=Interested%20in%20StateGen&amp;body=Hi%20StateGen%2C%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM.">
+        <span class="cc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3>Email us</h3>
+        <p>Prefer email? Send us a note with your agency details and we'll reply shortly.</p>
+        <span class="cc-val">stategen0@gmail.com</span>
+        <span class="cc-cta">Send an email →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -879,12 +918,31 @@
       <p>The CRM built for real estate agencies. Matching, pipeline and follow-ups in one shared workspace.</p>
     </div>
     <div class="foot-links">
-      <div class="foot-col"><h6>Product</h6><a href="#product">Overview</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#plans">Plans</a></div>
-      <div class="foot-col"><h6>Get started</h6><a href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register agency ↗</a><a href="https://stategenapp.vercel.app/signup/agent" target="_blank" rel="noopener">Agent sign up ↗</a><a href="#how">How it works</a></div>
+      <div class="foot-col"><h6>Product</h6><a href="#product">Overview</a><a href="#features">Features</a><a href="#contact">Contact</a><a href="#plans">Plans</a></div>
+      <div class="foot-col"><h6>Get started</h6><a href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register agency ↗</a><a href="https://stategenapp.vercel.app/signup/agent" target="_blank" rel="noopener">Agent sign up ↗</a><a href="#contact">Contact</a></div>
     </div>
   </div>
   <div class="wrap foot-bottom"><span>© 2026 StateGen. Built for real estate professionals.</span><span>stategenapp.vercel.app</span></div>
 </footer>
+
+<!-- ============ STICKY CONTACT BAR ============ -->
+<div class="contact-bar">
+  <div class="cb-inner">
+    <span class="cb-text">Ready to organize your agency? <b>Message us now.</b></span>
+    <div class="cb-choose">
+      <button class="cb-btn" id="cbBtn" type="button" aria-haspopup="true" aria-expanded="false">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.06 8.06 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09h-.01a8.1 8.1 0 0 1-4.12-1.13l-.29-.17-3.06.8.82-2.98-.19-.31a8.07 8.07 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09Zm-2.79 4.35c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg>
+        Contact us
+        <svg class="cb-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+      </button>
+      <div class="cb-menu" id="cbMenu" role="menu" aria-label="Choose how to reach us" hidden>
+        <a role="menuitem" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener"><span class="mi-ic wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm-2.79 6.15c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span><span class="mi-tx"><b>WhatsApp</b><small>+961 81 056 376</small></span></a>
+        <a role="menuitem" href="https://wa.me/96170762304?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener"><span class="mi-ic wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm-2.79 6.15c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span><span class="mi-tx"><b>WhatsApp</b><small>+961 70 762 304</small></span></a>
+        <a role="menuitem" href="mailto:stategen0@gmail.com?subject=Interested%20in%20StateGen&amp;body=Hi%20StateGen%2C%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM."><span class="mi-ic em"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mi-tx"><b>Email</b><small>stategen0@gmail.com</small></span></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -1360,6 +1418,18 @@
       cring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
       requestAnimationFrame(loop);
     })();
+  }
+
+  /* ---------- CONTACT BAR NUMBER PICKER ---------- */
+  var cbBtn = $("#cbBtn"), cbMenu = $("#cbMenu");
+  if (cbBtn && cbMenu) {
+    var cbClosing = null;
+    var cbOpen = function () { if (cbClosing) { clearTimeout(cbClosing); cbClosing = null; } cbMenu.hidden = false; requestAnimationFrame(function () { cbMenu.classList.add("open"); }); cbBtn.setAttribute("aria-expanded", "true"); };
+    var cbClose = function () { cbMenu.classList.remove("open"); cbBtn.setAttribute("aria-expanded", "false"); cbClosing = setTimeout(function () { cbMenu.hidden = true; cbClosing = null; }, 220); };
+    cbBtn.addEventListener("click", function (e) { e.stopPropagation(); if (cbMenu.classList.contains("open")) cbClose(); else cbOpen(); });
+    document.addEventListener("click", function (e) { if (cbMenu.classList.contains("open") && !cbMenu.contains(e.target) && !cbBtn.contains(e.target)) cbClose(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && cbMenu.classList.contains("open")) cbClose(); });
+    $$("#cbMenu a").forEach(function (a) { a.addEventListener("click", function () { cbClose(); }); });
   }
 })();
 </script>
