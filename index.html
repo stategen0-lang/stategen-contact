@@ -468,7 +468,6 @@
   }
 
   /* ===== Instagram contact additions ===== */
-  body { padding-bottom: 76px; } /* space for the sticky contact bar */
   .contact { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1000px; margin: 0 auto; }
   .contact-card { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 30px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ground); text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
@@ -513,7 +512,6 @@
     .cb-btn { width: 100%; justify-content: center; font-size: 16px; padding: 14px 22px; }
     .cb-choose { width: 100%; }
     .cb-menu { left: 0; right: 0; min-width: 0; }
-    body { padding-bottom: 74px; }
   }
 
   /* responsive */
@@ -904,7 +902,7 @@
     <p>Register today, get activated, approve your team — and run every deal from one place.</p>
     <div class="hero-cta">
       <a class="btn btn-lg btn-on-dark" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register your agency →</a>
-      <a class="btn btn-lg btn-outline-dark" href="#product">Replay the tour</a>
+      <a class="btn btn-lg btn-outline-dark" href="#contact">Contact us</a>
     </div>
     <p class="hero-note">Agents can join at <a href="https://stategenapp.vercel.app/signup/agent" target="_blank" rel="noopener">signup/agent</a> — your manager approves you in.</p>
   </div>
@@ -924,25 +922,6 @@
   </div>
   <div class="wrap foot-bottom"><span>© 2026 StateGen. Built for real estate professionals.</span><span>stategenapp.vercel.app</span></div>
 </footer>
-
-<!-- ============ STICKY CONTACT BAR ============ -->
-<div class="contact-bar">
-  <div class="cb-inner">
-    <span class="cb-text">Ready to organize your agency? <b>Message us now.</b></span>
-    <div class="cb-choose">
-      <button class="cb-btn" id="cbBtn" type="button" aria-haspopup="true" aria-expanded="false">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.06 8.06 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09h-.01a8.1 8.1 0 0 1-4.12-1.13l-.29-.17-3.06.8.82-2.98-.19-.31a8.07 8.07 0 0 1-1.24-4.3c0-4.46 3.63-8.09 8.1-8.09Zm-2.79 4.35c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg>
-        Contact us
-        <svg class="cb-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
-      </button>
-      <div class="cb-menu" id="cbMenu" role="menu" aria-label="Choose how to reach us" hidden>
-        <a role="menuitem" href="https://wa.me/96181056376?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener"><span class="mi-ic wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm-2.79 6.15c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span><span class="mi-tx"><b>WhatsApp</b><small>+961 81 056 376</small></span></a>
-        <a role="menuitem" href="https://wa.me/96170762304?text=Hi%20StateGen!%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM." target="_blank" rel="noopener"><span class="mi-ic wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm-2.79 6.15c-.13 0-.34.05-.52.24-.18.19-.69.67-.69 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.24 3.4 3.06 1.69.68 2.03.55 2.4.51.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.08-.18-.13-.37-.23-.19-.1-1.14-.56-1.31-.62-.18-.06-.31-.1-.44.1-.13.19-.5.62-.61.75-.11.13-.23.15-.42.05-.19-.1-.8-.29-1.53-.94-.57-.5-.95-1.13-1.06-1.32-.11-.19-.01-.29.08-.39.09-.09.19-.23.29-.34.1-.11.13-.19.19-.32.06-.13.03-.24-.02-.34-.05-.1-.44-1.08-.61-1.48-.16-.38-.32-.33-.44-.34h-.38Z"/></svg></span><span class="mi-tx"><b>WhatsApp</b><small>+961 70 762 304</small></span></a>
-        <a role="menuitem" href="mailto:stategen0@gmail.com?subject=Interested%20in%20StateGen&amp;body=Hi%20StateGen%2C%20I%20saw%20your%20page%20on%20Instagram%20and%20I%20want%20to%20know%20more%20about%20your%20CRM."><span class="mi-ic em"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mi-tx"><b>Email</b><small>stategen0@gmail.com</small></span></a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
 (function () {
