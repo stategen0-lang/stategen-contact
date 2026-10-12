@@ -1392,7 +1392,7 @@
   sizeSlider.addEventListener("input", function () { recommend(parseInt(sizeSlider.value, 10)); });
   recommend(15);
 
-  /* ---------- BILLING PERIOD TOGGLE ---------- */
+    /* ---------- BILLING PERIOD TOGGLE ---------- */
   var billPricing = {
     Team:     { m: 200, s: 1000, sWas: 1200, y: 2000, yWas: 2400 },
     Business: { m: 350, s: 1750, sWas: 2100, y: 3500, yWas: 4200 },
@@ -1400,8 +1400,8 @@
   };
   function billMoney(n) { return "$" + n.toLocaleString("en-US"); }
   function renderBilling(period) {
-    $(".bill-toggle button").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-period") === period); });
-    $(".plan").forEach(function (plan) {
+    $$(".bill-toggle button").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-period") === period); });
+    $$(".plan").forEach(function (plan) {
       var key = plan.getAttribute("data-plan"), pr = $(".p-price", plan), alt = $(".p-alt", plan);
       if (!pr || !alt) return;
       if (key === "Enterprise") { pr.innerHTML = '<span class="amt">Let\u2019s talk</span>'; alt.innerHTML = "Custom pricing, tailored to your firm."; return; }
@@ -1418,7 +1418,7 @@
       }
     });
   }
-  $(".bill-toggle button").forEach(function (b) { b.addEventListener("click", function () { renderBilling(b.getAttribute("data-period")); }); });
+  $$(".bill-toggle button").forEach(function (b) { b.addEventListener("click", function () { renderBilling(b.getAttribute("data-period")); }); });
   renderBilling("monthly");
 
   /* ---------- CUSTOM DOT + RING CURSOR ---------- */
