@@ -429,6 +429,10 @@
   .plan .p-price small { color: var(--ink-mute); font-weight: 500; font-size: 13px; }
   .plan .p-alt { margin: 9px 0 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line-soft); font-size: 12px; color: var(--ink-mute); line-height: 1.7; }
   .plan .p-alt b { color: var(--ink-soft); font-weight: 700; font-family: var(--font-mono); }
+  .bill-wrap { display: flex; justify-content: center; margin: -8px 0 30px; }
+  .bill-toggle button { font-size: 13.5px; padding: 8px 18px; }
+  .plan .p-alt s { color: var(--ink-mute); margin-right: 8px; }
+  .plan .p-save { color: var(--good); font-weight: 700; font-family: var(--font-mono); }
   .plan li { font-size: 13.5px; }
   .plan ul { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
   .plan li { font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
@@ -901,6 +905,7 @@
       <div class="ps-scale"><span>1</span><span>10</span><span>30</span><span>60+</span></div>
       <div class="ps-rec">Recommended: <b id="recPlan">Business</b></div>
     </div>
+    <div class="bill-wrap reveal d1"><div class="seg bill-toggle" role="tablist" aria-label="Billing period"><button type="button" data-period="monthly" class="active">Monthly</button><button type="button" data-period="sixmo">6 months</button><button type="button" data-period="yearly">Yearly</button></div></div>
     <div class="plan-grid"><div class="plan" data-plan="Team"><span class="p-flag">Recommended</span><h3>Team</h3><p class="p-for">0–9 agents · small &amp; boutique agencies</p><div class="p-price"><span class="amt">$200</span> <small>/ month</small></div><div class="p-alt">6 months — <b>$1,000</b><br>Yearly — <b>$2,000</b></div><ul><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full CRM: clients, properties &amp; smart matching</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Visual deal pipeline</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp follow-up reminders</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Shared team calendar</li></ul><a class="btn btn-ghost" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register</a></div><div class="plan" data-plan="Business"><span class="p-flag">Recommended</span><h3>Business</h3><p class="p-for">10–29 agents · most agencies start here</p><div class="p-price"><span class="amt">$350</span> <small>/ month</small></div><div class="p-alt">6 months — <b>1 month free</b> ($1,750)<br>Yearly — <b>2 months free</b> ($3,500)</div><ul><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Team</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> AI listing descriptions</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Shareable listing pages that capture leads</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Bulk import &amp; listing alerts</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Full analytics &amp; reports</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Role-based access</li></ul><a class="btn btn-primary" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register your agency</a></div><div class="plan" data-plan="Company"><span class="p-flag">Recommended</span><h3>Company</h3><p class="p-for">30–59 agents · growing, multi-team agencies</p><div class="p-price"><span class="amt">$450</span> <small>/ month</small></div><div class="p-alt">6 months — <b>1 month free</b> ($2,250)<br>Yearly — <b>2 months free</b> ($4,500)</div><ul><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Business</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Multi-branch ready</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Offers tracking &amp; invoicing</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Documents &amp; video on every listing</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Activity feed &amp; full audit trail</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority activation &amp; support</li></ul><a class="btn btn-ghost" href="https://stategenapp.vercel.app/signup/company" target="_blank" rel="noopener">Register</a></div><div class="plan" data-plan="Enterprise"><span class="p-flag">Recommended</span><h3>Enterprise</h3><p class="p-for">60+ agents · large &amp; multi-branch firms</p><div class="p-price"><span class="amt">Let’s talk</span></div><div class="p-alt">Custom pricing, tailored to your firm.</div><ul><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Everything in Company</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited agents &amp; branches</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Dedicated onboarding &amp; training</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Custom setup &amp; integrations</li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority support &amp; guidance</li></ul><a class="btn btn-ghost" href="#contact">Talk to us</a></div></div>
   </div>
 </section>
@@ -1386,6 +1391,35 @@
   }
   sizeSlider.addEventListener("input", function () { recommend(parseInt(sizeSlider.value, 10)); });
   recommend(15);
+
+  /* ---------- BILLING PERIOD TOGGLE ---------- */
+  var billPricing = {
+    Team:     { m: 200, s: 1000, sWas: 1200, y: 2000, yWas: 2400 },
+    Business: { m: 350, s: 1750, sWas: 2100, y: 3500, yWas: 4200 },
+    Company:  { m: 450, s: 2250, sWas: 2700, y: 4500, yWas: 5400 }
+  };
+  function billMoney(n) { return "$" + n.toLocaleString("en-US"); }
+  function renderBilling(period) {
+    $(".bill-toggle button").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-period") === period); });
+    $(".plan").forEach(function (plan) {
+      var key = plan.getAttribute("data-plan"), pr = $(".p-price", plan), alt = $(".p-alt", plan);
+      if (!pr || !alt) return;
+      if (key === "Enterprise") { pr.innerHTML = '<span class="amt">Let\u2019s talk</span>'; alt.innerHTML = "Custom pricing, tailored to your firm."; return; }
+      var d = billPricing[key]; if (!d) return;
+      if (period === "monthly") {
+        pr.innerHTML = '<span class="amt">' + billMoney(d.m) + '</span> <small>/ month</small>';
+        alt.innerHTML = "Billed monthly.";
+      } else if (period === "sixmo") {
+        pr.innerHTML = '<span class="amt">' + billMoney(d.s) + '</span> <small>/ 6 months</small>';
+        alt.innerHTML = '<s>' + billMoney(d.sWas) + '</s><span class="p-save">save ' + billMoney(d.sWas - d.s) + '</span>';
+      } else {
+        pr.innerHTML = '<span class="amt">' + billMoney(d.y) + '</span> <small>/ year</small>';
+        alt.innerHTML = '<s>' + billMoney(d.yWas) + '</s><span class="p-save">save ' + billMoney(d.yWas - d.y) + '</span>';
+      }
+    });
+  }
+  $(".bill-toggle button").forEach(function (b) { b.addEventListener("click", function () { renderBilling(b.getAttribute("data-period")); }); });
+  renderBilling("monthly");
 
   /* ---------- CUSTOM DOT + RING CURSOR ---------- */
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
