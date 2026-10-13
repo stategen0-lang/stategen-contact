@@ -1518,7 +1518,7 @@
       propGrid.appendChild(card);
     });
     function selProp(i) {
-      $("#propGrid .prop-card").forEach(function (c, j) { c.classList.toggle("sel", j === i); });
+      $$("#propGrid .prop-card").forEach(function (c, j) { c.classList.toggle("sel", j === i); });
       var p = spProps[i];
       var hits = spClients.map(function (c) { return { c: c, s: score(c, p) }; }).sort(function (a, b) { return b.s - a.s; }).slice(0, 4);
       propDetail.innerHTML =
@@ -1542,7 +1542,7 @@
       cliList.appendChild(row);
     });
     function selCli(i) {
-      $("#cliList .cl-row").forEach(function (r, j) { r.classList.toggle("sel", j === i); });
+      $$("#cliList .cl-row").forEach(function (r, j) { r.classList.toggle("sel", j === i); });
       var c = spClients[i];
       var hits = spProps.map(function (p) { return { p: p, s: score(c, p) }; }).sort(function (a, b) { return b.s - a.s; }).slice(0, 3);
       cliDetail.innerHTML =
