@@ -523,6 +523,23 @@
     .cb-menu { left: 0; right: 0; min-width: 0; }
   }
 
+  .prop-card, .cl-row { cursor: pointer; }
+  .prop-card.sel { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+  .cl-row.sel { background: var(--accent-soft); border-radius: 9px; }
+  .ps-detail { margin-top: 16px; border: 1px solid var(--line-soft); border-radius: 12px; padding: 16px; background: var(--ground); }
+  .ps-detail .psd-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .ps-detail .psd-ic { width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; flex: none; color: #fff; font-weight: 700; font-size: 16px; }
+  .ps-detail .psd-title { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .ps-detail .psd-sub { font-size: 12px; color: var(--ink-mute); font-family: var(--font-mono); margin-top: 2px; }
+  .ps-detail .psd-price { margin-left: auto; font-family: var(--font-mono); font-weight: 700; font-size: 16px; color: var(--ink); }
+  .psd-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); margin: 14px 0 8px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
+  .pcm { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line-soft); }
+  .pcm:first-of-type { border-top: none; }
+  .pcm-ic { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; flex: none; color: #fff; font-weight: 700; font-size: 12px; }
+  .pcm-main { flex: 1; min-width: 0; }
+  .pcm-main b { color: var(--ink); font-size: 13.5px; display: block; }
+  .pcm-main span { color: var(--ink-mute); font-size: 11.5px; font-family: var(--font-mono); }
+  .pcm-score { font-family: var(--font-mono); font-weight: 700; font-size: 15px; color: var(--good); flex: none; }
   /* properties & clients showcase panels */
   .panel-tools .pt-sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-mute); }
   .prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -821,27 +838,15 @@
       </div>
 
       <div class="panel" data-panel="props">
-        <div class="panel-tools"><span class="pt-title">All properties</span><span class="pt-sub">48 active listings</span></div>
-        <div class="prop-grid">
-          <div class="prop-card"><div class="pc-thumb apt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></div><div class="pc-body"><div class="pc-top"><b>Sioufi Duplex</b><span class="pc-status active">Active</span></div><div class="pc-meta">Achrafieh · Apartment · 2 bed</div><div class="pc-price">$265,000</div></div></div>
-          <div class="prop-card"><div class="pc-thumb villa"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></div><div class="pc-body"><div class="pc-top"><b>Sea-view Villa</b><span class="pc-status active">Active</span></div><div class="pc-meta">Jounieh · Villa · 4 bed</div><div class="pc-price">$720,000</div></div></div>
-          <div class="prop-card"><div class="pc-thumb comm"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></div><div class="pc-body"><div class="pc-top"><b>Beirut Central Retail</b><span class="pc-status active">Active</span></div><div class="pc-meta">Downtown · Commercial</div><div class="pc-price">$790,000</div></div></div>
-          <div class="prop-card"><div class="pc-thumb apt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></div><div class="pc-body"><div class="pc-top"><b>Verdun Two-Bed</b><span class="pc-status active">Active</span></div><div class="pc-meta">Verdun · Apartment · 2 bed</div><div class="pc-price">$235,000</div></div></div>
-          <div class="prop-card"><div class="pc-thumb land"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></div><div class="pc-body"><div class="pc-top"><b>Baabda Land Plot</b><span class="pc-status priority">Priority</span></div><div class="pc-meta">Baabda · Land · 640 m²</div><div class="pc-price">$310,000</div></div></div>
-          <div class="prop-card"><div class="pc-thumb apt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg></div><div class="pc-body"><div class="pc-top"><b>Hamra City Flat</b><span class="pc-status active">Active</span></div><div class="pc-meta">Hamra · Apartment · 1 bed</div><div class="pc-price">$205,000</div></div></div>
-        </div>
+        <div class="panel-tools"><span class="pt-title">All properties</span><span class="pt-sub">Tap a listing to see who it matches</span></div>
+        <div class="prop-grid" id="propGrid"></div>
+        <div class="ps-detail" id="propDetail"></div>
       </div>
 
       <div class="panel" data-panel="clients">
-        <div class="panel-tools"><span class="pt-title">All clients</span><span class="pt-sub">126 active</span></div>
-        <div class="cl-list">
-          <div class="cl-row"><div class="cl-av" style="background:#5e8fd6">R</div><div class="cl-main"><b>Rania Khoury</b><span>Achrafieh · 2 bed · $250k budget</span></div><div class="cl-tags"><span class="cl-type">Buyer</span><span class="cl-status priority">Priority</span></div></div>
-          <div class="cl-row"><div class="cl-av" style="background:#2f9e6b">G</div><div class="cl-main"><b>Georges Moukarzel</b><span>Downtown · Commercial · $800k</span></div><div class="cl-tags"><span class="cl-type">Investor</span><span class="cl-status active">Active</span></div></div>
-          <div class="cl-row"><div class="cl-av" style="background:#c79a4b">K</div><div class="cl-main"><b>Karim Sleiman</b><span>Jounieh · Villa · 4 bed · $700k</span></div><div class="cl-tags"><span class="cl-type">Buyer</span><span class="cl-status active">Active</span></div></div>
-          <div class="cl-row"><div class="cl-av" style="background:#d9663f">L</div><div class="cl-main"><b>Lea Tannous</b><span>Verdun · 2 bed · $235k budget</span></div><div class="cl-tags"><span class="cl-type">Buyer</span><span class="cl-status active">Active</span></div></div>
-          <div class="cl-row"><div class="cl-av" style="background:#7c6fd6">N</div><div class="cl-main"><b>Nadia Haddad</b><span>Achrafieh · 2 bed · $250k budget</span></div><div class="cl-tags"><span class="cl-type">Buyer</span><span class="cl-status priority">Priority</span></div></div>
-          <div class="cl-row"><div class="cl-av" style="background:#3f9e8c">S</div><div class="cl-main"><b>Samir Baz</b><span>Baabda · Land · $310k budget</span></div><div class="cl-tags"><span class="cl-type">Investor</span><span class="cl-status cold">Cold</span></div></div>
-        </div>
+        <div class="panel-tools"><span class="pt-title">All clients</span><span class="pt-sub">Tap a client to see their matches</span></div>
+        <div class="cl-list" id="cliList"></div>
+        <div class="ps-detail" id="cliDetail"></div>
       </div>
     </div>
   </div>
@@ -1477,6 +1482,83 @@
   }
   $$(".bill-toggle button").forEach(function (b) { b.addEventListener("click", function () { renderBilling(b.getAttribute("data-period")); }); });
   renderBilling("monthly");
+
+  /* ---------- PROPERTIES & CLIENTS: clickable with live matches ---------- */
+  (function () {
+    var propGrid = $("#propGrid"), propDetail = $("#propDetail");
+    var cliList = $("#cliList"), cliDetail = $("#cliDetail");
+    if (!propGrid || !cliList) return;
+    var homeSvg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg>';
+    var homeSm = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg>';
+    function m(n) { return n >= 1000 ? "$" + Math.round(n / 1000) + "k" : "$" + n; }
+    var spProps = [
+      { title: "Sioufi Duplex", area: "Achrafieh", type: "Apartment", beds: 2, price: 265000, status: "Active", cls: "apt" },
+      { title: "Sea-view Villa", area: "Jounieh", type: "Villa", beds: 4, price: 720000, status: "Active", cls: "villa" },
+      { title: "Beirut Central Retail", area: "Downtown", type: "Commercial", beds: 0, price: 790000, status: "Active", cls: "comm" },
+      { title: "Verdun Two-Bed", area: "Verdun", type: "Apartment", beds: 2, price: 235000, status: "Active", cls: "apt" },
+      { title: "Baabda Land Plot", area: "Baabda", type: "Land", beds: 0, price: 310000, status: "Priority", cls: "land" },
+      { title: "Hamra City Flat", area: "Hamra", type: "Apartment", beds: 1, price: 205000, status: "Active", cls: "apt" }
+    ];
+    var spClients = [
+      { name: "Rania Khoury", color: "#5e8fd6", area: "Achrafieh", type: "Apartment", beds: 2, budget: 250000, ctype: "Buyer", status: "Priority" },
+      { name: "Georges Moukarzel", color: "#2f9e6b", area: "Downtown", type: "Commercial", beds: 0, budget: 800000, ctype: "Investor", status: "Active" },
+      { name: "Karim Sleiman", color: "#c79a4b", area: "Jounieh", type: "Villa", beds: 4, budget: 700000, ctype: "Buyer", status: "Active" },
+      { name: "Lea Tannous", color: "#d9663f", area: "Verdun", type: "Apartment", beds: 2, budget: 235000, ctype: "Buyer", status: "Active" },
+      { name: "Nadia Haddad", color: "#7c6fd6", area: "Achrafieh", type: "Apartment", beds: 2, budget: 250000, ctype: "Buyer", status: "Priority" },
+      { name: "Samir Baz", color: "#3f9e8c", area: "Baabda", type: "Land", beds: 0, budget: 310000, ctype: "Investor", status: "Active" }
+    ];
+    function meta(p) { return p.area + " · " + p.type + (p.beds ? " · " + p.beds + " bed" : ""); }
+
+    // properties
+    spProps.forEach(function (p, i) {
+      var card = document.createElement("div");
+      card.className = "prop-card";
+      card.innerHTML = '<div class="pc-thumb ' + p.cls + '">' + homeSvg + '</div><div class="pc-body"><div class="pc-top"><b>' + p.title + '</b><span class="pc-status ' + (p.status === "Priority" ? "priority" : "active") + '">' + p.status + '</span></div><div class="pc-meta">' + meta(p) + '</div><div class="pc-price">' + m(p.price) + '</div></div>';
+      card.addEventListener("click", function () { selProp(i); });
+      propGrid.appendChild(card);
+    });
+    function selProp(i) {
+      $("#propGrid .prop-card").forEach(function (c, j) { c.classList.toggle("sel", j === i); });
+      var p = spProps[i];
+      var hits = spClients.map(function (c) { return { c: c, s: score(c, p) }; }).sort(function (a, b) { return b.s - a.s; }).slice(0, 4);
+      propDetail.innerHTML =
+        '<div class="psd-head"><div class="psd-ic pc-thumb ' + p.cls + '" style="color:inherit">' + homeSvg + '</div>' +
+        '<div><div class="psd-title">' + p.title + '</div><div class="psd-sub">' + meta(p) + ' · ' + p.status + '</div></div>' +
+        '<div class="psd-price">' + m(p.price) + '</div></div>' +
+        '<div class="psd-label">Interested clients</div>' +
+        hits.map(function (h) {
+          return '<div class="pcm"><div class="pcm-ic" style="background:' + h.c.color + '">' + h.c.name.charAt(0) + '</div>' +
+            '<div class="pcm-main"><b>' + h.c.name + '</b><span>' + h.c.ctype + ' · ' + h.c.area + ' · ' + m(h.c.budget) + ' budget</span></div>' +
+            '<div class="pcm-score">' + h.s + '%</div></div>';
+        }).join("");
+    }
+
+    // clients
+    spClients.forEach(function (c, i) {
+      var row = document.createElement("div");
+      row.className = "cl-row";
+      row.innerHTML = '<div class="cl-av" style="background:' + c.color + '">' + c.name.charAt(0) + '</div><div class="cl-main"><b>' + c.name + '</b><span>' + c.area + (c.beds ? " · " + c.beds + " bed" : "") + " · " + m(c.budget) + ' budget</span></div><div class="cl-tags"><span class="cl-type">' + c.ctype + '</span><span class="cl-status ' + c.status.toLowerCase() + '">' + c.status + '</span></div>';
+      row.addEventListener("click", function () { selCli(i); });
+      cliList.appendChild(row);
+    });
+    function selCli(i) {
+      $("#cliList .cl-row").forEach(function (r, j) { r.classList.toggle("sel", j === i); });
+      var c = spClients[i];
+      var hits = spProps.map(function (p) { return { p: p, s: score(c, p) }; }).sort(function (a, b) { return b.s - a.s; }).slice(0, 3);
+      cliDetail.innerHTML =
+        '<div class="psd-head"><div class="psd-ic" style="background:' + c.color + '">' + c.name.charAt(0) + '</div>' +
+        '<div><div class="psd-title">' + c.name + '</div><div class="psd-sub">' + c.ctype + ' · ' + c.status + ' · ' + c.area + ' · ' + m(c.budget) + '</div></div></div>' +
+        '<div class="psd-label">Best-matched listings</div>' +
+        hits.map(function (h) {
+          return '<div class="pcm"><div class="pcm-ic pc-thumb ' + h.p.cls + '" style="color:inherit">' + homeSm + '</div>' +
+            '<div class="pcm-main"><b>' + h.p.title + '</b><span>' + meta(h.p) + ' · ' + m(h.p.price) + '</span></div>' +
+            '<div class="pcm-score">' + h.s + '%</div></div>';
+        }).join("");
+    }
+
+    selProp(0);
+    selCli(0);
+  })();
 
   /* ---------- CUSTOM DOT + RING CURSOR ---------- */
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
