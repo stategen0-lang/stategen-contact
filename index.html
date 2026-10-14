@@ -573,6 +573,17 @@
   .cl-status.cold { background: var(--surface-2); color: var(--ink-mute); }
   @media (max-width: 560px) { .prop-grid { grid-template-columns: 1fr; } .cl-tags { flex-direction: column; gap: 4px; align-items: flex-end; } }
 
+  /* security section */
+  .security { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .sec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .sec-card { padding: 26px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--ground); transition: border-color 0.2s, transform 0.2s; }
+  .sec-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .sec-card .s-ic { width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-deep); display: grid; place-items: center; margin-bottom: 16px; }
+  .sec-card h3 { font-size: 17.5px; margin-bottom: 8px; }
+  .sec-card p { font-size: 14px; color: var(--ink-mute); line-height: 1.55; }
+  @media (max-width: 860px) { .sec-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .sec-grid { grid-template-columns: 1fr; } }
+
   /* responsive */
   @media (max-width: 940px) {
     .hero-grid { grid-template-columns: 1fr; gap: 44px; padding: 58px 0 70px; }
@@ -643,6 +654,7 @@
     <div class="nav-links">
       <a class="navlink" href="#product">Product</a>
       <a class="navlink" href="#features">Features</a>
+      <a class="navlink" href="#security">Security</a>
       <a class="navlink" href="#contact">Contact</a>
       <a class="navlink" href="#plans">Plans</a>
       <button class="theme-toggle" id="themeBtn" aria-label="Toggle color theme" title="Toggle theme">
@@ -953,6 +965,25 @@
         <div class="who-card"><span class="w-role">Daily flow</span><h3>Less admin, more viewings</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Log activity in seconds, not spreadsheets</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Drag your deals through the pipeline</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Shared calendar for every viewing</li></ul></div>
         <div class="who-card"><span class="w-role">Never miss</span><h3>Every lead stays warm</h3><ul><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Daily reminders for pending follow-ups</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Listing alerts when new stock fits a client</li><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Colour-coded clients: priority, active, cold</li></ul></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section class="band security" id="security">
+  <div class="wrap">
+    <div class="band-head center reveal">
+      <span class="eyebrow">Security &amp; privacy</span>
+      <h2>Your agency’s data stays yours.</h2>
+      <p>StateGen is built so every agency works in its own walled-off space — your clients, listings and deals are never visible to anyone outside your team.</p>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-card reveal d1"><span class="s-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Isolated per agency</h3><p>Every agency works in a completely separate space. No other agency — and no agent outside your team — can ever see your clients, listings or deals.</p></div>
+      <div class="sec-card reveal d2"><span class="s-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><h3>Role-based access</h3><p>Managers see the whole agency; agents see only their own book of clients and listings. What each person can open is scoped to their role.</p></div>
+      <div class="sec-card reveal d3"><span class="s-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 3 2 2 4-4"/></svg></span><h3>Manager-approved access</h3><p>Agents sign up under your company and stay invisible until you approve them. You decide exactly who gets in — and can reject or remove anyone.</p></div>
+      <div class="sec-card reveal d1"><span class="s-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z"/><path d="M12 8v4M12 16h.01"/></svg></span><h3>Protected sign-ins</h3><p>Logins are rate-limited to block brute-force attempts, and repeated failures raise an alert — so a stolen password alone will not get anyone in.</p></div>
+      <div class="sec-card reveal d2"><span class="s-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><h3>Encrypted connection</h3><p>Every connection is encrypted with HTTPS / TLS, and the separation between agencies is enforced right at the database — not just in the app.</p></div>
+      <div class="sec-card reveal d3"><span class="s-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span><h3>Your data stays yours</h3><p>Export your clients, listings and deals whenever you want, and account-level controls sit behind a separate admin step.</p></div>
     </div>
   </div>
 </section>
