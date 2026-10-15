@@ -413,7 +413,8 @@
   .plan-sizer { max-width: 560px; margin: 0 auto 44px; text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px 28px; box-shadow: var(--shadow-sm); }
   .plan-sizer .ps-q { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 18px; }
   .plan-sizer .ps-q b { color: var(--accent-deep); font-family: var(--font-mono); font-size: 20px; }
-  .plan-sizer .ps-scale { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute); margin-top: 8px; }
+  .plan-sizer .ps-scale { position: relative; height: 14px; margin-top: 10px; font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute); }
+  .plan-sizer .ps-scale span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
   .plan-sizer .ps-rec { margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
   .plan-sizer .ps-rec b { color: var(--accent-deep); }
   .plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -995,7 +996,7 @@
     <div class="plan-sizer reveal d1">
       <div class="ps-q">My agency has <b id="agentCount">15</b> agents</div>
       <input type="range" id="sizeSlider" min="1" max="70" value="15" aria-label="Number of agents">
-      <div class="ps-scale"><span>1</span><span>10</span><span>30</span><span>60+</span></div>
+      <div class="ps-scale"><span style="left:9px">1</span><span style="left:calc(9px + 0.1304 * (100% - 18px))">10</span><span style="left:calc(9px + 0.4203 * (100% - 18px))">30</span><span style="left:calc(9px + 0.8551 * (100% - 18px))">60+</span></div>
       <div class="ps-rec">Recommended: <b id="recPlan">Business</b></div>
     </div>
     <div class="bill-wrap reveal d1"><div class="seg bill-toggle" role="tablist" aria-label="Billing period"><button type="button" data-period="monthly" class="active">Monthly</button><button type="button" data-period="sixmo">6 months</button><button type="button" data-period="yearly">Yearly</button></div></div>
